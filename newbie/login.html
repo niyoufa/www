@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <link rel="stylesheet" type="text/css" href="css/base.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/login.css">
+    <script src="js/jquery.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/md5.js"></script>
+    <script src="js/emailAutoComplete.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/login.js"></script>
+</head>
+<body ng-app="myLogin" ng-controller="loginCtrl">
+<div class="Tips GeneralTips">{{myTips}}</div>
+<div id="header">
+    <div class="h_t">
+        <div class="h_t_content">
+            <nav>
+                <a href="register.html"><img src="images/register.png">注册</a>
+                <a><img src="images/login.png">登录</a>
+                <a><img src="images/main_phone.png">15996458299</a>
+            </nav>
+        </div>
+    </div>
+</div>
+<div id="loginBg">
+    <img src="images/loginBg.png" class="loginBg">
+    <div id="mid">
+        <!------------登录  s------------>
+        <div class="login">
+            <ul class="tab">
+                <li class="leftTab2">新手编程</li>
+            </ul>
+            <div class="contentLogin">
+                <ul class="fs14">
+                    <li>
+                        <div class="parentCls">
+                            <input type="text" class="phone email" placeholder="开发者头条独家号/Git帐号">
+                        </div>
+                    </li>
+                    <li><input type="password" placeholder="密码" class="loginPassword"></li>
+                    <li>
+                        <input type="text" placeholder="验证码" class="codeInput">
+                        <div class="code">
+                            <span class="codeNum0"></span>
+                            <span class="codeNum1"></span>
+                            <span class="codeNum2"></span>
+                            <span class="codeNum3"></span>
+                        </div>
+                        <span class="refresh">换一张</span>
+                    </li>
+                    <li class="fs12">
+                        <div class="rememberPwd">
+                            <input type="checkbox" class="fl">
+                            <span>记住密码</span>
+                        </div>
+                        <a href="findPassword.html" class="fr">忘记密码？</a>
+                    </li>
+                    <li>
+                        <div class="btn">登录</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!------------登录  e------------>
+    </div>
+</div>
+
+</body>
+</html>

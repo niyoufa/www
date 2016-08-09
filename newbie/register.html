@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <link rel="stylesheet" type="text/css" href="css/base.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/register.css">
+    <script src="js/jquery.js"></script>
+    <script src="js/emailAutoComplete.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/ionic.bundle.js"></script>
+    <script src="js/md5.js"></script>
+    <!--<script src="js/register.js"></script>-->
+
+</head>
+<body ng-app="myAppRegister" ng-controller="myCtrl">
+
+<div class="Tips GeneralTips">请填写正确的手机号</div>
+<div id="header">
+    <div class="h_t">
+        <div class="h_t_content">
+            <nav>
+                <a><img src="images/register.png">注册</a>
+                <a href="login.html"><img src="images/login.png">登录</a>
+                <a><img src="images/main_phone.png">025-9695570</a>
+            </nav>
+        </div>
+    </div>
+</div>
+<div id="loginBg">
+    <img src="images/loginBg.png" class="loginBg">
+    <div id="mid">
+        <!------------注册  s------------>
+        <div class="register">
+            <ul class="tab">
+                <li class="leftTab2">新手编程</li>
+            </ul>
+            <div class="content">
+                <ul class="fs14">
+                    <li><input type="text" class="phoneNum" placeholder="开发者头条独家号/Git帐号                          （必填）"></li>
+                    <li>
+                        <input ng-model="code.phoneCode" type="text" placeholder="验证码" class="phoneCodeInput">
+                        <input type="type" readonly="readonly" class="phoneCode" ng-click="sendPhoneMessage()" value="获取验证码">
+                    </li>
+                    <li><input ng-model="password" type="password" placeholder="密码                                                         （必填）"></li>
+                    <li><input ng-model="password2" type="password" placeholder="确认密码                                                  （必填）"></li>
+                    <li>
+                        <div class="btn" ng-click="doRegister()">注册</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!------------注册  e------------>
+    </div>
+</div>
+
+</body>
+<script>
+    var app = angular.module('myAppRegister', []);
+    app.controller('myCtrl', function($scope,$http) {
+        /**
+         * Created by zhangxiaogui on 16/7/15.
+         */
+        $scope.isChecked = 0;
+        var InterValObjP,InterValObjE;
+        var countP = 60,countE = 60;
+        var curCountP,curCountE;
+        $scope.code={}
+        $scope.sendPhoneMessage = function(){
+            var phoneNum = $(".phoneNum").val();
+            var regexp = /^[0-9]{11}$/;
+            if(!regexp.test(phoneNum)){
+                var phone = $(".Tips");
+                GeneralTips(phone);
+                phone.text("请填写正确的手机号");
+                phone.slideDown(300);
+                setTimeout(function(){
+                    phone.slideUp(300);
+                },1500);
+            }else{
+                // 发送验证码
+                $http.get("http://credit.dhui100.com:10000/api/checkcode/mobile?mobile="+phoneNum)
+                        .success(function(response){
+                        })
+                $scope.phoneNum = phoneNum;
+                $(".phoneCode").attr("disabled","true");
+                curCountP = countP;
+                $(".phoneCode").val(curCountP + "秒后重发");
+                InterValObjP = window.setInterval(SetRemainTime, 1000);
+            }
+
+
+
+        }
+
+        //timer处理函数
+        function SetRemainTime() {
+            if (curCountP == 0) {
+                window.clearInterval(InterValObjP);//停止计时器
+                $(".phoneCode").removeAttr("disabled");
+                $(".phoneCode").val("再次发送");
+            }
+            else {
+                curCountP--;
+                $(".phoneCode").val(curCountP + "秒后重发");
+            }
+        }
+
+
+
+        $scope.sendEmailMessage = function() {
+            var email = $(".email").val();
+            var regexp = /^([a-zA-Z0-9_-])+((@qq.com)|(@163.com)|(@126.com)|(@189.cn)|(@sina.com)|(@hotmail.com)|(@gmail.com)|(@139.com))$/;
+            if(!regexp.test(email)){
+                var emailtips = $(".Tips");
+                GeneralTips(emailtips);
+                emailtips.text("请填写正确的email");
+                emailtips.slideDown(300);
+                setTimeout(function(){
+                    emailtips.slideUp(300);
+                },1500);
+            }else{
+                $http.get("http://credit.dhui100.com:10000/api/checkcode/email?email="+email)
+                        .success(function(response){
+                        })
+                $scope.email = email;
+                //向后台发送处理数据
+                //var data = {phoneNum:phoneNum};
+                //ajaxCommon("get_verify_code.cgi",requestJson(data),successFunc_Verify);
+                $(".emailCode").attr("disabled","true");
+                curCountE = countE;
+                $(".emailCode").val(curCountE + "秒后重发");
+                InterValObjE = window.setInterval(SetRemainTime2, 1000);
+
+            }
+
+
+
+        }
+
+        //timer处理函数
+        function SetRemainTime2() {
+            if (curCountE == 0) {
+                window.clearInterval(InterValObjE);//停止计时器
+                $(".emailCode").removeAttr("disabled");
+                $(".emailCode").val("再次发送");
+            }
+            else {
+                curCountE--;
+                $(".emailCode").val(curCountE + "秒后重发");
+            }
+        }
+
+        $scope.doCheck = function(isChecked){
+            $scope.isChecked = isChecked;
+        }
+
+        $scope.doRegister = function(){
+
+            var phoneNum = $(".phoneNum").val();
+            var email = $(".email").val();
+            var regexp = /^[0-9a-zA-Z]*$/;
+            var regexpPhone = /^[0-9]*$/;
+            var regexpEmail = /^([a-zA-Z0-9_-])+((@qq.com)|(@163.com)|(@126.com)|(@189.cn)|(@sina.com)|(@hotmail.com)|(@gmail.com)|(@139.com))$/;
+
+            if(phoneNum.length != 11){
+                showMsg("请填写正确的手机号码");
+            }else if($scope.code.phoneCode == undefined){
+                showMsg("验证码不能为空");
+            }else if($scope.code.phoneCode.length != 6 || !regexpPhone.test($scope.code.phoneCode)){
+                showMsg("请输入正确的手机验证码");
+            }else if($scope.password == undefined){
+                showMsg("密码不能为空");
+            }else if($scope.password.length < 6 || $scope.password.length >20 || !regexp.test($scope.password)){
+                showMsg("建议使用字母和数字的组合，6-20个字符（不支持特殊符号）");
+            }else if($scope.password.length <=0){
+                showMsg("请填写密码");
+            }else if(email == ""){
+                showMsg("邮箱不能为空");
+            }else if($scope.password != $scope.password2){
+                showMsg("两次输入密码不一致");
+            }else if(!regexpEmail.test(email)){
+                showMsg("请填写正确的email");
+            }else if($scope.code.emailCode == undefined){
+                showMsg("邮箱验证码不能为空");
+            } else if($scope.code.emailCode.length != 6 || !regexpPhone.test($scope.code.emailCode)){
+                showMsg("请输入正确的邮箱验证码");
+            }else if(phoneNum != $scope.phoneNum){
+                showMsg("手机号与发送验证码手机号不一致");
+            }else if(email != $scope.email){
+                showMsg("邮箱与发送验证码邮箱不一致");
+            }else if($scope.isChecked == 0){
+                showMsg("请同意委托咨询协议");
+            }else{
+                $http({
+                    method: 'POST',
+                    url:"http://credit.dhui100.com:10000/api/user/signup",
+                    data: "mobile="+phoneNum+
+                    "&mobile_code="+$scope.code.phoneCode+
+                    "&password="+hex_md5($scope.password)+
+                    "&re_password="+hex_md5($scope.password2)+
+                    "&email="+email+
+                    "&email_code="+$scope.code.emailCode+
+                    "&invitation_code="+$scope.code.invitation_code,
+                    headers : { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' }
+                }).success(function(response){
+                    if(response.response.success == 1){
+                        var emailtips = $(".Tips");
+                        GeneralTips(emailtips);
+                        emailtips.text("注册成功!");
+                        emailtips.slideDown(300);
+                        setTimeout(function(){
+                            emailtips.slideUp(300);
+                            var token = response.response.data.access_token;
+                            window.location.href="login.html";
+                        },2000);
+                    }else{
+                        alert(response.response.return_code);
+                    }
+                })
+            }
+        }
+
+        $scope.toIndex = function(){
+            window.location.href = "index.html";
+        }
+
+        function showMsg(msg){
+            var emailtips = $(".Tips");
+            GeneralTips(emailtips);
+            emailtips.text(msg);
+            emailtips.slideDown(300);
+            setTimeout(function(){
+                emailtips.slideUp(300);
+            },1500);
+        }
+
+
+    });
+</script>
+</html>
