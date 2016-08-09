@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>个人实名认证</title>
+    <link rel="stylesheet" type="text/css" href="css/base.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/personal.css">
+    <script src="js/jquery.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/jquery-form.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/personal.js"></script>
+    <script src="js/sha1.js"></script>
+    <script src="js/md5.js"></script>
+    <script src="js/Base64.js"></script>
+</head>
+<body ng-app="myperson" ng-controller="PersonCtrl">
+<div class="Tips GeneralTips"></div>
+<div id="header">
+    <div class="h_t">
+        <div class="h_t_content">
+            <nav>
+                <a ng-click="doLogout()"><img src="images/main_loginOut.png">退出</a>
+                <a><img src="images/main_user.png">{{userName}}</a>
+                <a><img src="images/main_phone.png">025-9695570</a>
+            </nav>
+        </div>
+    </div>
+    <div class="h_b">
+        <div class="h_b_content">
+            <img src="images/main_logo.png" class="logo" ng-click="toIndex()">
+            <ul>
+                <li ng-click="toIndex()">首页</li>
+                <li>征信产品</li>
+                <li>个人中心</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+<div id="breadcrumb">
+        <ol class="breadcrumb">
+            <li>当前位置：<a href="#">首页</a></li>
+            <li><a href="#">认证</a></li>
+            <li>个人实名认证</li>
+        </ol>
+</div>
+
+<div id="mid">
+     <!------------个人实名认证  s------------>
+     <div class="title">
+         <span>个人实名认证</span>
+     </div>
+    <form enctype="multipart/form-data" name="formImg" method="post" id="formImg" action="http://credit.dhui100.com:10000/api/auth/person" target="id_frame" >
+         <div class="content">
+             <input name="access_token" value="{{token}}" type="hidden">
+            <ul>
+                <li><span class="name">姓名：</span><input name="name" type="text" placeholder="请输入您的真实姓名"></li>
+                <li><span class="name">身份证号：</span><input name="id_card" type="text" placeholder="请输入您的18位身份证号码" class="idcardNum"></li>
+                <li>
+                    <span class="name">身份证照片：</span>
+                    <div class="pic">
+                        <div class="picture">
+                            <input type="file" name="front_photo" class="fileImg hide" multiple lang="1" id="test"><br>
+                            <img  src="images/picture.png" class="pic1">
+                            <div class="imagebg hide"></div>
+                            <!--<img src="" style="display:none" class="img2">-->
+                            <div class="pic_detail">
+                                <span>身份证正面</span>
+                                <div class="pic_btn">选择照片</div>
+                            </div>
+                            <div class="tipcontent">
+                                <div class="name"><span class="colmain">*</span> 要求：</div>
+                                <div>1、照片的信息不能被遮挡，需清晰可见；</div>
+                                <div>2、照片请勿进行任何软件处理；</div>
+                                <div>3、支持格式，JPG/PNG，最大不超过4M；</div>
+                            </div>
+                        </div>
+                        <div class="picture">
+                            <input type="file" name="back_photo" class="fileImg hide" multiple lang="2"/><br>
+                            <img  src="images/picture.png" class="pic2">
+                            <div class="imagebg hide"></div>
+                            <!--<img src="" style="display:none" class="img2">-->
+                            <div class="pic_detail">
+                                <span>身份证反面</span>
+                                <div class="pic_btn">选择照片</div>
+                            </div>
+                        </div>
+                        <div class="picture">
+                            <input type="file" name="hand_photo" class="fileImg hide" multiple lang="3"/><br>
+                            <img src="images/picture.png" class="pic3">
+                            <div  class="imagebg hide"></div>
+                            <!--<img src="" style="display:none" class="img2">-->
+                            <div class="pic_detail">
+                                <span>手持身份证</span>
+                                <div class="pic_btn">选择照片</div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <span class="name">承诺书照片：</span>
+                    <div class="pic">
+                        <div class="picture">
+                            <input type="file" name="promise_photo" class="fileImg hide" multiple lang="4"/><br>
+                            <img  src="images/picture.png" class="pic4">
+                            <div class="imagebg hide"></div>
+                            <!--<img src="" style="display:none" class="img2">-->
+                            <div class="pic_detail">
+                                <span>承诺书签名照</span>
+                                <div class="pic_btn">选择照片</div>
+                            </div>
+                            <div class="tipcontent">
+                                <div class="name"><span class="colmain">*</span> 要求：</div>
+                                <div>1、手抄下方承诺书内容，签字并拍照上传；</div>
+                                <div>2、《个人承诺书》 <a class="colmain" href="http://credit.dhui100.com:10000/api/file/download?file_name=14689810872-%E6%89%BF%E8%AF%BA%E4%B9%A6(%E4%B8%AA%E4%BA%BA%E7%89%88).docx" download="个人承诺书">[点击下载]</a>；</div>
+                                <div>3、照片请勿进行任何软件处理；</div>
+                                <div>4、支持格式，JPG/PNG，最大不超过4M；</div>
+                            </div>
+                        </div>
+                     </div>
+                </li>
+            </ul>
+         </div>
+         <div class="mainTip"><span class="colmain">*</span> 提交资料前，请再次仔细核对信息的准确性，提高审核的通过率！</div>
+         <div class="sendBtn">确认提交</div>
+     </form>
+    <iframe id="id_frame" name="id_frame" style="display: none;"></iframe>
+     <!------------个人实名认证  e------------>
+</div>
+
+<div id="footer">
+    <div class="f_t">
+        <div class="f_t_content">
+            <div class="left">
+                <span>产品类型：个人信用委托申请 / 企业信用查询申请  </span>
+                <span>客服热线：025—86630550分机号511 </span>
+                <span>服务时间：周一至周五9:00-18:00</span>
+                <span>客服邮箱： jltx@personcredit.com</span>
+            </div>
+            <div class="right">
+                <span>用户协议</span>
+                <span>投诉反馈</span>
+            </div>
+        </div>
+    </div>
+    <div class="f_b">Copyrights  reserved by  东汇征信有限公司 苏 ICP 备 XXXXXXXX号</div>
+</div>
+</body>
+</html>

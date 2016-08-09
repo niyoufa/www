@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="css/base.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <script src="js/jquery-1.11.2.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/ionic.bundle.js"></script>
+
+</head>
+<body   ng-app="myApp" ng-controller="myCtrl">
+    <div id="header">
+        <div class="h_t">
+            <div class="h_t_content" ng-show="isLogin">
+                <nav>
+                    <a ng-click="doLogout()"><img src="images/main_loginOut.png">退出</a>
+                    <a><img src="images/main_user.png">{{userName}}</a>
+                    <a><img src="images/main_phone.png">025-9695570</a>
+                </nav>
+            </div>
+            <div class="h_t_content" ng-hide="isLogin">
+                <nav>
+                    <a href="register.html"><img src="images/register.png">注册</a>
+                    <a href="login.html"><img src="images/login.png">登录</a>
+                    <a><img src="images/main_phone.png">025-9695570</a>
+                </nav>
+            </div>
+        </div>
+        <div class="h_b">
+            <div class="h_b_content">
+                <img src="images/main_logo.png" class="logo" ng-click="toIndex()">
+                <ul>
+                    <li class="active" ng-click="toIndex()">首页</li>
+                    <li>征信产品</li>
+                    <li>个人中心</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="myCarousel" class="carousel slide" data-interval = "2000" data-ride="carousel" >
+        <!-- 轮播（Carousel）指标 -->
+        <ol class="carousel-indicators" >
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+        <!-- 轮播（Carousel）项目 -->
+        <div class="carousel-inner">
+            <div class="item active">
+                <img src="images/banner.png" alt="First slide">
+            </div>
+            <div class="item">
+                <img src="images/banner.png" alt="Second slide">
+            </div>
+            <div class="item">
+                <img src="images/banner.png" alt="Third slide">
+            </div>
+        </div>
+        <!-- 轮播（Carousel）导航 -->
+        <a class="carousel-control left" href="#myCarousel"
+           data-slide="prev"></a>
+        <a class="carousel-control right" href="#myCarousel"
+           data-slide="next"></a>
+    </div>
+
+    <div id="mid">
+        <!------------优势  s------------>
+        <div class="advantage">
+            <ul>
+                <li>
+                    <img src="images/main_fair.png">
+                    <div>公平/ <span>Fair</span></div>
+                </li>
+                <li>
+                    <img src="images/main_justice.png">
+                    <div>公正/ <span>Justice</span></div>
+                </li>
+                <li>
+                    <img src="images/main_safe.png">
+                    <div>安全/ <span>Security</span></div>
+                </li>
+                <li>
+                    <img src="images/main_extensive.png">
+                    <div>全面/ <span>Extensive</span></div>
+                </li>
+            </ul>
+        </div>
+        <!------------优势  e------------>
+
+        <!------------公告  s------------>
+        <div class="notice">
+            <div class="title">
+                <span>网站公告</span>
+                <i>Notice</i>
+            </div>
+            <div class="notice_detail">
+                <ul>
+                    <a href="#">
+                        <li style="width: 320px;position: relative">
+                            <span  ng-bind="main_notice[0].title" style="position: absolute;left: -2px;top: -1px;width: 220px;text-overflow: ellipsis;overflow:hidden;white-space:nowrap;display: block"></span>
+                            <i style="position: absolute;right:-1px" ng-bind="main_notice[0].time + '000'| date : 'yyyy-MM-dd '"></i>
+                        </li>
+                    </a>
+                    <a>
+                        <li style="width: 320px;position: relative">
+                            <span  ng-bind="main_notice[1].title" style="position: absolute;left: -2px;top: -1px;width: 220px;text-overflow: ellipsis;overflow:hidden;white-space:nowrap;display: block"></span>
+                            <i style="position: absolute;right:-1px"  class="fr" ng-bind="main_notice[1].time + '000'| date : 'yyyy-MM-dd '"></i>
+                        </li>
+                    </a>
+                    <a>
+                        <li class="last" style="position: relative">
+                            <span  ng-bind="main_notice[2].title"  style="position: absolute;left: -2px;top: -1px;width: 220px;text-overflow: ellipsis;overflow:hidden;white-space:nowrap;display: block"></span>
+                        </li>
+                    </a>
+                </ul>
+                <span class="more">更多》</span>
+            </div>
+        </div>
+        <!------------公告  e------------>
+
+        <!------------产品  s------------>
+        <div class="product">
+            <div class="title">
+                <span>征信产品</span>
+                <i>Credit products</i>
+            </div>
+            <div class="product_detail">
+                <div class="person">
+                    <img src="images/main_person.png">
+                    <div class="detail">
+                        <p>全面记录个人信用活动，反映个人信用状况的文件。</p>
+                        <div ng-click="toApplyPersonal()" class="btn">申请查询</div>
+                    </div>
+                </div>
+                <div class="company">
+                    <img src="images/main_company.png">
+                    <div class="detail">
+                        <p>用于查询企业、企业法人、企业法人所关联企业的综合信息、其它欠贷信息、法院执行信息等。</p>
+                        <div class="btn" ng-click="toApplyCompany()">申请查询</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!------------产品  e------------>
+    </div>
+
+
+    <div id="footer">
+        <div class="f_t">
+            <div class="f_t_content">
+                <div class="left">
+                    <span>产品类型：个人信用委托申请 / 企业信用查询申请  </span>
+                    <span>客服热线：025—86630550分机号511 </span>
+                    <span>服务时间：周一至周五9:00-18:00</span>
+                    <span>客服邮箱： jltx@personcredit.com</span>
+                </div>
+                <div class="right">
+                    <span>用户协议</span>
+                    <span>投诉反馈</span>
+                </div>
+            </div>
+        </div>
+        <div class="f_b">Copyrights  reserved by  东汇征信有限公司 苏 ICP 备 XXXXXXXX号</div>
+    </div>
+
+           <!--angularjs-->
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('myCtrl', function($scope,$http) {
+            init();
+            function init(){
+                getUserInfo();
+                getNotice();
+            }
+            function getUserInfo(){
+                if(sessionStorage.token == undefined || sessionStorage.token == "undefined"){
+                    $scope.isLogin = 0;
+                }else{
+                    $http.get("http://credit.dhui100.com:10000/api/user?access_token="+sessionStorage.token)
+                            .success(function(res){
+                                if(res.response.success ==1){
+                                    $scope.isLogin = 1;
+                                    $scope.userName = res.response.data.mobile;
+                                    sessionStorage.userName = res.response.data.mobile;
+                                }else{
+                                    $scope.isLogin = 0;
+                                }
+                            })
+                }
+
+            }
+
+            $scope.doLogout = function(){
+                sessionStorage.token = undefined;
+                window.location.href = "index.html";
+            }
+
+            $scope.toApplyPersonal = function(){
+                if($scope.isLogin == 0){
+                    window.location.href = "login.html";
+                }else{
+                    $http.get("http://credit.dhui100.com:10000/api/user/person/auth/info?access_token="+sessionStorage.token)
+                            .success(function(res){
+                                if(res.response.success == 1){
+                                    if(res.response.data.status == "uncommitted"){
+                                        window.location.href = "remindCertification.html";
+                                    }else if(res.response.data.status == "cheching"){
+                                        showMsg("正在积极审核中，请耐心等待！");
+                                    }else if(res.response.data.status == "pass"){
+                                        showMsg("审核通过，该跳转了，页面还在开发中.......");
+                                    }else if(res.response.data.status == "nopass"){
+                                        window.location.href = "remindCertification.html";
+                                    }
+                                }else{
+                                    showMsg(res.response.error_msg);
+                                }
+                            })
+                }
+
+            }
+
+
+            $scope.toApplyCompany = function(){
+                if($scope.isLogin == 0){
+                    window.location.href = "login.html";
+                }else{
+                    $http.get("http://credit.dhui100.com:10000/api/user/person/auth/info?access_token="+sessionStorage.token)
+                            .success(function(res){
+                                if(res.response.success == 1){
+                                    if(res.response.data.status == "uncommitted"){
+                                        window.location.href = "remindCertification.html";
+                                    }else if(res.response.data.status == "cheching"){
+                                        showMsg("正在积极审核中，请耐心等待！");
+                                    }else if(res.response.data.status == "pass"){
+                                        showMsg("审核通过，该跳转了，页面还在开发中.......");
+                                    }else if(res.response.data.status == "nopass"){
+                                        window.location.href = "remindCertification.html";
+                                    }
+                                }else{
+                                    showMsg(res.response.error_msg);
+                                }
+                            })
+                }
+            }
+
+            function getNotice(){
+                $http.get("http://xulei.dhui100.com:8888/api/notice?page=0"+"&size=3")
+                        .success(function(res){
+                            if(res.success == 1){
+                                $scope.main_notice = res.data;
+                            }
+                        })
+            }
+
+            $scope.toIndex = function(){
+                window.location.href = "index.html";
+            }
+
+            function showMsg(msg){
+                var emailtips = $(".Tips");
+                GeneralTips(emailtips);
+                emailtips.text(msg);
+                emailtips.slideDown(300);
+                setTimeout(function(){
+                    emailtips.slideUp(300);
+                },1500);
+            }
+        });
+    </script>
+</body>
+</html>
