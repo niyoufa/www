@@ -1,0 +1,15 @@
+#mid{margin-top: 110px;}
+#mid #third-parts{margin-top:120px;}
+#mid #third-parts .item{border:solid 1px;margin-left:10px;padding:10px;align:center;height:220px;border-radius:10px;}
+
+.newbie-app{border:solid 1px;width:60%;margin:auto;margin-top:150px;background-color:#FCF8E3;color:#8A6D3B;height:60px;
+    padding:20px;border-radius:5px;border-color:#FAEBCC;}
+.newbie-app p{float:left;}
+.newbie-app button{float:left;margin-left:400px;margin-top:-5px;;background-color:#23B7E5;color:white;border-color:#23B7E5;}
+.newbie-app .float{clear:both;}
+
+.articels{width:60%;margin:auto;margin-top:30px;padding-bottom:20px;border-top:solid 1px;border-color:#DEE5E7;}
+.articel{border-color:#FFFFFF;width:98%;margin:auto;margin-top:10px;padding-left:20px;padding-top:10px;padding-bottom:10px;}
+.articel a{color:#063642;font-size:16px;text-decoration:none;}
+.articel a:visited{color:#888}
+.articel .source{color:#999;}
