@@ -8,7 +8,13 @@
 .newbie-app button{float:left;margin-left:400px;margin-top:-5px;;background-color:#23B7E5;color:white;border-color:#23B7E5;}
 .newbie-app .float{clear:both;}
 
-.articels{width:60%;margin:auto;margin-top:30px;padding-bottom:20px;border-top:solid 1px;border-color:#DEE5E7;}
+.search{width:60%;margin:auto;margin-top:10px;padding-bottom:10px;}
+.search input{width:80%;margin-left:20px;}
+.search input{float:left;}
+.search button{float:left;width:10%;margin-left:30px;}
+.search .float{clear:both;}
+
+.articels{width:60%;margin:auto;margin-top:10px;padding-bottom:20px;border-top:solid 1px;border-color:#DEE5E7;}
 .articel{border-color:#FFFFFF;width:98%;margin:auto;margin-top:10px;padding-left:20px;padding-top:10px;padding-bottom:10px;}
 .articel a{color:#063642;font-size:16px;text-decoration:none;}
 .articel a:visited{color:#888}

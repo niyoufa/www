@@ -102,6 +102,9 @@ ul,ol,li{ list-style-type:none;}
 .red {
     color:#333;
 }
+
+#header .h_b_content li a{text-decoration:none;color:white;}
+
 /* 代码整理：懒人之家 www.lanrenzhijia.com */
 
 

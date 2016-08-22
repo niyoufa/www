@@ -12,7 +12,7 @@
     <script src="js/ionic.bundle.js"></script>
 
 </head>
-<body ng-app="myApp" ng-controller="myCtrl">
+<body>
     <div id="header">
         <div class="h_t">
             <div class="h_t_content" ng-show="isLogin">
@@ -34,10 +34,10 @@
             <div class="h_b_content">
                 <img src="images/main_logo.png" class="logo" ng-click="toIndex()">
                 <ul>
-                    <li class="active">首页</li>
-                    <li>我的分享</li>
-                    <li>我的收藏</li>
-                    <li>开发者头条</li>
+                    <li><a href="/newbie/index.html">首页</a></li>
+                    <li class="active"><a href="/newbie/shares.html">我的分享</a></li>
+                    <li><a href="#">我的收藏</a></li>
+                    <li><a href="#">开发者头条</a></li>
                 </ul>
             </div>
         </div>
@@ -49,121 +49,107 @@
             <button class="btn">立即使用</button>
             <div class="float"></div>
         </div>
-        <div class="articels">
-            <div class="articel">
-                <a href="#"><span class="title">django1.6.11 final nonrel</span></a><br>
-                <span class="source">django-mongodb=engine.readthedocs.io</span>
-            </div>
-            <div class="articel">
-                <a href="#"><span class="title">Python 虚拟环境：Virtualenv</span></a><br>
-                <span class="source">liuzhijun.iteye.com</span>
-            </div>
+        <div class="search">
+            <input type="text" class="form-control" placeholder="关键词" />
+            <button class="btn">搜索</button>
+            <div class="float"></div>
         </div>
+        <div class="articels">
+        </div>
+
+        <div class="text-center">
+            <ul class="pagination">
+                <li class="first">
+                    <a href="javascript:alert('ok');">« 第一页</a>
+                </li>
+
+                <li class="prev">
+                    <a rel="prev">‹ 上一页</a>
+                </li>
+
+                <li class="page">
+                    <a rel="prev">1</a>
+                </li>
+
+                <li class="page active">
+                    <a>2</a>
+                </li>
+
+                <li class="page">
+                    <a rel="next">3</a>
+                </li>
+
+
+                <li class="next">
+                    <a rel="next">下一页 ›</a>
+                </li>
+
+                <li class="last">
+                    <a>末页 »</a>
+                </li>
+
+            </ul>
+        </div>
+
     </div>
 
-           <!--angularjs-->
     <script>
-        var app = angular.module('myApp', []);
-        app.controller('myCtrl', function($scope,$http) {
-            init();
-            function init(){
-                getUserInfo();
-                getNotice();
-            }
-            function getUserInfo(){
-                if(sessionStorage.token == undefined || sessionStorage.token == "undefined"){
-                    $scope.isLogin = 0;
+        var my_share_list_url = "http://localhost:30000/api/link/list" ;
+        query_params = {};
+        //格式化字符串
+        String.format = function(src){
+            if (arguments.length == 0) return null;
+            var args = Array.prototype.slice.call(arguments, 1);
+            return src.replace(/\{(\d+)\}/g, function(m, i){
+                return args[i];
+            });
+        };
+
+        $(function(){
+            $("#mid .newbie-app button").click(function(){
+                alert("敬请期待！");
+            });
+
+            query_params["page"] = 3;
+            getMyShares(query_params);
+
+            $("#mid .search button").click(function(){
+                searchMyShare();
+            });
+
+        })
+
+        function getMyShares(query_params){
+            $.get(my_share_list_url,query_params,function(data){
+                if(data["response"]["success"] != 1){
+                    alert(data["response"]);
+                    return;
                 }else{
-                    $http.get("http://credit.dhui100.com:10000/api/user?access_token="+sessionStorage.token)
-                            .success(function(res){
-                                if(res.response.success ==1){
-                                    $scope.isLogin = 1;
-                                    $scope.userName = res.response.data.mobile;
-                                    sessionStorage.userName = res.response.data.mobile;
-                                }else{
-                                    $scope.isLogin = 0;
-                                }
-                            })
+                    links = data["response"]["data"];
+                    $("#mid .articels").empty();
+                    for(var i=0,len=links.length;i<len;i++){
+                        $("#mid .articels").append(String.format(''+
+                            '<div class="articel">'+
+                                '<a href={0} target="blank"><span class="title">{1}</span></a><br>'+
+                                '<span class="source">{2}</span>'+
+                            '</div>'
+                        ,links[i]["href"],links[i]["title"],links[i]["source"]))
+                    }
                 }
+            });
+        }
 
-            }
+        function searchMyShare(){
+            var keyword = $("#mid .search input").val();
+            query_params["keyword"] = keyword;
+            query_params["page"] = 1;
+            getMyShares(query_params);
+        }
 
-            $scope.doLogout = function(){
-                sessionStorage.token = undefined;
-                window.location.href = "index.html";
-            }
+        function pageMyShare(){
 
-            $scope.toApplyPersonal = function(){
-                if($scope.isLogin == 0){
-                    window.location.href = "login.html";
-                }else{
-                    $http.get("http://credit.dhui100.com:10000/api/user/person/auth/info?access_token="+sessionStorage.token)
-                            .success(function(res){
-                                if(res.response.success == 1){
-                                    if(res.response.data.status == "uncommitted"){
-                                        window.location.href = "remindCertification.html";
-                                    }else if(res.response.data.status == "cheching"){
-                                        showMsg("正在积极审核中，请耐心等待！");
-                                    }else if(res.response.data.status == "pass"){
-                                        showMsg("审核通过，该跳转了，页面还在开发中.......");
-                                    }else if(res.response.data.status == "nopass"){
-                                        window.location.href = "remindCertification.html";
-                                    }
-                                }else{
-                                    showMsg(res.response.error_msg);
-                                }
-                            })
-                }
+        }
 
-            }
-
-
-            $scope.toApplyCompany = function(){
-                if($scope.isLogin == 0){
-                    window.location.href = "login.html";
-                }else{
-                    $http.get("http://credit.dhui100.com:10000/api/user/person/auth/info?access_token="+sessionStorage.token)
-                            .success(function(res){
-                                if(res.response.success == 1){
-                                    if(res.response.data.status == "uncommitted"){
-                                        window.location.href = "remindCertification.html";
-                                    }else if(res.response.data.status == "cheching"){
-                                        showMsg("正在积极审核中，请耐心等待！");
-                                    }else if(res.response.data.status == "pass"){
-                                        showMsg("审核通过，该跳转了，页面还在开发中.......");
-                                    }else if(res.response.data.status == "nopass"){
-                                        window.location.href = "remindCertification.html";
-                                    }
-                                }else{
-                                    showMsg(res.response.error_msg);
-                                }
-                            })
-                }
-            }
-
-            function getNotice(){
-                $http.get("http://xulei.dhui100.com:8888/api/notice?page=0"+"&size=3")
-                        .success(function(res){
-                            if(res.success == 1){
-                                $scope.main_notice = res.data;
-                            }
-                        })
-            }
-
-            $scope.toIndex = function(){
-                window.location.href = "index.html";
-            }
-
-            function showMsg(msg){
-                var emailtips = $(".Tips");
-                GeneralTips(emailtips);
-                emailtips.text(msg);
-                emailtips.slideDown(300);
-                setTimeout(function(){
-                    emailtips.slideUp(300);
-                },1500);
-            }
-        });
     </script>
 </body>
 </html>

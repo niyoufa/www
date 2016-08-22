@@ -3,4 +3,5 @@
 #mid{margin-top: 110px;}
 
 #mid #third-parts{margin-top:120px;}
-#mid #third-parts .item{border:solid 1px;margin-left:10px;padding:10px;align:center;height:220px;border-radius:10px;}
+#mid #third-parts .item{border:solid 1px;margin-left:10px;padding:10px;align:center;height:220px;
+    border-radius:10px;border-color:#B0B1A8;}

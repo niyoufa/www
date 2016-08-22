@@ -2,10 +2,10 @@
  * Created by zhangxiaogui on 16/7/14.
  */
 $(function(){
-    //触发轮播
-    setTimeout(function(){
-        $(".carousel-control.right").click();
-    },2000);
+   $("#header .h_b_content li").click(function(){
+//        $("#header .h_b_content li").removeClass("active");
+//        $(this).addClass("active");
+   });
 })
 
 
