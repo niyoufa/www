@@ -1,0 +1,50 @@
+<style>
+  img{
+    width: 100%;display: inherit;
+  }
+  p{ padding: 0 !important; margin: 0!important;}
+  .u-flyer {display: block;width: 50px;height: 50px;border-radius: 50px;position: fixed;z-index: 100;}
+</style>
+<ion-view view-title="商品详情">
+  <ion-nav-buttons side="right" >
+    <i class="icon ion-ios-cart" style="font-size: 24px; margin-top: 5px; margin-right: 4%" ng-click="goCart()"></i>
+  </ion-nav-buttons>
+  <ion-content>
+    <img ng-src="{{good.goods_thumb}}"  style="width: 100%; border-bottom: 1px solid #eee;">
+    <div style="width:100%; padding: 8px 3%;">
+      <div  style="border-bottom: 1px solid #eee; width:100%;padding-bottom: 5px;">
+        <i ng-bind="good.box_name" style="font-size: 16px"></i>
+        (<i ng-bind="good.goods_brief" style="font-size: 16px"></i>)
+
+        <div>
+          <i style="color: #999; font-size: 12px; line-height: 24px;float: left">规格:{{good.specs}}</i>
+          <span style=" color: #999; font-size: 12px; line-height: 24px;float: left;margin-left: 20px;">已销售<span style="color: #d85d70;   "> {{good.sales}} </span>箱</span>
+        </div>
+        <div style="clear: both">
+          <i ng-bind="good.shop_price | currency:'￥'" style="color: #d85d70;font-size: 14px;"></i>
+        </div>
+      </div>
+      <div style="width:100%; height:35px; margin-top: 5px;">
+        <!-- 空出25的距离以后放按钮什么用 -->
+        <div style="float: left; line-height: 35px; font-size: 14px;">购买数量</div>
+        <div style="float: right; margin-top: 5px">
+          <div style="float:right;padding: 3px 12px; background: #f0f0f0;color:#aaa; border-right: 1px solid #eee;"ng-click="addNum()"><b>+</b></div>
+          <div style="float:right;padding: 3px 12px;color:#303030; margin: 0 1px; background: #f9f9f9"ng-bind="good.num">1</div>
+          <div style="float:right;padding: 3px 12px; background: #f0f0f0; color:#aaa; "ng-click="subNum()"><b>-</b></div>
+        </div>
+
+      </div>
+    </div>
+
+    <div id="detailHtml"></div>
+  </ion-content>
+  <div style="position:fixed;left:0;bottom:-1px;width: 100%;height: 40px;background-color: #ffffff">
+    <img ng-src="{{good.goods_thumb}}" class="img" style="width:15%; float: left; background-size: auto 100%; height:34px; margin-top: 3px;">
+    <div style="width: 45%;float: left; color:#303030;height: 40px; line-height: 40px;">
+      <i>应付:</i> <i style="color:#f0525d; margin-top: 2px"><span style="font-size: 12px;">￥</span>{{totalPrice | currency:''}}元</i>
+    </div>
+    <div class="addCart" ng-click="addCart()" style="text-align:center; float: right; width:35%; float: right;background-color: #f0525d;height: 40px; line-height: 40px;">
+      <b style="color:#ffffff;font-size: 14px;">加入购物车</b>
+    </div>
+  </div>
+</ion-view>

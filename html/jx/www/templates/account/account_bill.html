@@ -1,0 +1,39 @@
+<ion-view>
+  <ion-content>
+    <div class="row">
+      <div class="col positive" style="text-align: center;" ng-if="isClick == 1" ng-click="toClick(1)">日账单</div>
+      <div class="col" style="text-align: center" ng-if="isClick != 1" ng-click="toClick(1)">日账单</div>
+      <div class="col positive" style="text-align: center" ng-if="isClick == 2" ng-click="toClick(2)">月账单</div>
+      <div class="col" style="text-align: center" ng-if="isClick != 2" ng-click="toClick(2)">月账单</div>
+    </div>
+    <div ng-repeat="order in orders">
+    <div class="row" style="width: 90%;margin-left:auto;margin-right:auto;height: 40px;border-radius: 3px;background-color: #f3f3f3;margin-top: 1px" ng-click="totClick(order.remark)">
+      <div class="col-30" style="line-height: 33px;">{{order.order_date}}</div>
+      <div class="col-50" style="text-align: right;color: #ff3b30;line-height: 33px;">总金额：{{order.date_amount}}元</div>
+      <div class="col" style="text-align: right" ng-if="isClass!=order.remark"> > </div>
+      <div class="col" style="text-align: right" ng-if="isClass==order.remark"> v </div>
+    </div>
+      <table ng-show="isClass==order.remark" style="width: 90vw;margin-left: auto;margin-right: auto;text-align: center;border: solid 1px">
+        <tr>
+          <th style="text-align: left"><b>商品</b></th>
+          <th><b>数量</b></th>
+          <th><b>规格</b></th>
+          <th style="text-align: right"><b>总价(元)</b></th>
+        </tr>
+
+        <tr ng-repeat="orderdetail in order.goods_sum">
+          <th style="text-align: left">{{orderdetail.goods_name}}</th>
+          <th>{{orderdetail.count}}</th>
+          <th>{{orderdetail.attr_name}}</th>
+          <th style="text-align: right">{{orderdetail.goods_amount}}</th>
+        </tr>
+
+      </table>
+
+    </div>
+    <div style="width: 200px;height: 40px;margin-top: 100px;margin-left: auto;margin-right: auto;text-align: center;color: #9e9e9e" ng-show="noinfo">暂无订单</div>
+  </ion-content>
+</ion-view>
+<style>
+  .myspan{float: right;font-size: 20px;line-height: 40px;margin-right: 5px;}
+</style>

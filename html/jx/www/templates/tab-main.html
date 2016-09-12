@@ -1,0 +1,140 @@
+<ion-view hide-back-button="true">
+  <ion-nav-title>
+    <div class="bar bar-header item-input-inset" style=" padding:8px 0; width: 100%;margin-left: auto;margin-right: auto;z-index: 9999;"  ng-click="focus()" >
+      <label class="item-input-wrapper" style="background-color: #ffffff; line-height: 30px;">
+        <div style="margin-left: auto;margin-right: auto">
+          <i class="icon  ion-ios-search-strong placeholder-icon"></i><span style="color: #838383">搜索商品</span></div>
+      </label>
+    </div>
+  </ion-nav-title>
+  <ion-nav-buttons side="left">
+    <button class="button button-clear" style="margin-top: -6px;width: 14vw;" ng-click="toMessage()"><i class="icon ion-ios-chatbubble-outline"></i><br><span style="margin-top: -14px;font-size: 10px;margin-left: 0px;">消息</span> </button>
+    <!--<div class="bar bar-header item-input-inset" style="position: fixed;top:44px;height: 40px;width: 100%;margin-left: auto;margin-right: auto;"  ng-click="focus()" ng-hide="divsearch">-->
+    <!--<label class="item-input-wrapper" style="line-height: 2.42857;opacity: 0.5">-->
+    <!--<i class="icon  ion-ios-search-strong placeholder-icon"></i>-->
+    <!--</label>-->
+    <!--</div>-->
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <button class="button button-clear" ng-click="gocart()" style="margin-top: -6px;width: 14vw;"><i class="icon ion-ios-cart-outline"  style="font-size: 26px !important;"></i><br><span style="margin-top: -14px;font-size: 10px;margin-left: 0px;">购物车</span> </button>
+  </ion-nav-buttons>
+  <ion-content style="background: #f3f3f3">
+    <ion-refresher on-refresh="doRefresh()"
+                   pulling-text="Pull to refresh...">
+
+    </ion-refresher>
+
+    <img src="img/1.png" style="width:100%; background-size: 100% auto;">
+    <div style="width: 110%;height: 40px;background: #fff;border-radius: 100% 100% 0 0;position: absolute;margin-top: -8vw;margin-left: -5%;"></div>
+    <div style="width:100%; height:28vw; background: #fff; position: relative; padding:0 4%; border-bottom: 1px solid #e0e0e0;">
+      <ul>
+        <li style="width:25%; float: left; text-align: center; color:#666; line-height: 30px;" ng-click="toClass(1)">
+          <img src="img/2.png" style="width:70%; margin-left: 15%; display: block">
+          <span>快速采购</span>
+        </li>
+        <li style="width:25%; float: left; text-align: center; color:#666; line-height: 30px;" ng-click="toClass(1)">
+          <img src="img/3.png"style="width:70%; margin-left: 15%; display: block">
+          <span>热门新品</span>
+        </li>
+        <li style="width:25%; float: left; text-align: center; color:#666; line-height: 30px;" ng-click="goshopping()">
+          <img src="img/4.png"style="width:70%; margin-left: 15%; display: block">
+          <span>我要拼货</span>
+        </li>
+        <li style="width:25%; float: left; text-align: center; color:#666; line-height: 30px;"ng-click="gomainorder()">
+          <img src="img/5.png"style="width:70%; margin-left: 15%; display: block">
+          <span>我的订单</span>
+        </li>
+      </ul>
+    </div>
+
+    <div style="width:100%; padding:8px 2%; margin-bottom: 15px; margin-top: 15px; border-top:1px solid #e0e0e0; border-bottom: 1px solid #e0e0e0; background: #fff;">
+      <div style="width:53.5%; display: inline-block">
+        <img src="img/7.png" style="position: absolute; width:33.5%; margin-left: 10%; margin-top: 7%">
+        <img src="img/14.png" style="width:100%">
+      </div>
+      <div style="width:45%; float: right">
+        <img src="img/6.png" style="position: absolute; width:29%; margin-left: 8%; margin-top: 2.5%">
+        <img src="img/15.png" style="width:100%;">
+        <img src="img/8.png" style="position: absolute; width:29%; margin-left: 8%; margin-top: 2.5%">
+        <img src="img/16.png" style="width:100%; display: inline">
+      </div>
+    </div>
+
+
+
+
+    <div  style="width:100%; padding:8px 2%; margin-top: 15px; border-top:1px solid #e0e0e0; border-bottom: 1px solid #e0e0e0; background: #fff;">
+      <img src="img/9.png" style="width:40%; margin-left: 30%; margin-top: 6px; margin-bottom: 4px;">
+
+
+      <div style="width:100%;background: #fff; margin-bottom: 15px; box-shadow: 1px 2px 7px rgba(0,0,0,0.2);" ng-repeat="good in specials" ng-click="toDetail(good._id)" >
+        <div  ng-if="(good.end_time - now_time)>0 && good.stock > 0" >
+          <img src="img/10.png" style="width:20%; position: absolute;">
+          <img src="{{good.goods_img}}" style="width:100%; display: inherit">
+          <div style="width:96%; height:18vw; margin-top: -18vw; background: rgba(0,0,0,0.4); position: absolute">
+            <div style="color:#fff; line-height: 13vw; padding:0 2%;">
+              <span style="font-size: 4.5vw;"><strong>[快来拼货]</strong> {{good.box_name}}</span>
+              <span style="color:#ffcc00; font-size: 5vw; margin-left: 4%">￥{{good.shop_price}}</span>
+              <s style="font-size: 3vw; color:#cccbc5; margin-left: 1%">￥{{good.market_price}}</s>
+            </div>
+            <div style="color:#fff; line-height: 0vw; padding:0 2%;font-size: 3vw;">
+              <span>规格:{{good.specs}}</span>
+              <strong style="margin-left: 2%">法国大厨Alain Ducasse推荐</strong>
+            </div>
+          </div>
+          <div style="width:100%; height:22vw; padding:0 2%">
+            <div style="width:65%; margin: 5px 0; font-size: 3vw;display: inline-block; float:left">
+              <div style="line-height: 22px;">限量{{good.stock}}件：剩余 <strong style="color:#ff716c">{{good.stock-good.sales}}</strong> 件</div>
+              <div style="width:60%; background: #e6e6e6; height:10px; margin: 5px 0; position: absolute"><span style="position: absolute; width:{{good.cent}}%; background: #e10b00; height:10px;"></span></div>
+              <div style="line-height: 22px; color:#999;    margin-top: 6vw;">距结束还剩 <span style="color:#85d1f8">{{(good.end_time - now_time) | timeFormat}}</span></div>
+            </div>
+            <div style="width:35%; float: right;">
+              <div style="background:#e10b00; color:#fff; text-align:center; line-height:10vw;float: right; margin-top:10vw; width:25vw; height:10vw;">立即拼货</div>
+            </div>
+          </div>
+        </div>
+
+        <div  ng-if="(good.end_time - now_time)<0 || good.stock <= 0" >
+          <img src="img/10.png" style="width:20%; position: absolute;">
+          <img src="{{good.goods_img}}" style="width:100%; display: inherit">
+          <div style="width:96%; height:18vw; margin-top: -18vw; background: rgba(0,0,0,0.4); position: absolute">
+            <div style="color:#fff; line-height: 13vw; padding:0 2%;">
+              <span style="font-size: 4.5vw;"><strong>[快来拼货]</strong> {{good.box_name}}</span>
+              <span style="color:#ffcc00; font-size: 5vw; margin-left: 4%">￥{{good.shop_price}}</span>
+              <s style="font-size: 3vw; color:#cccbc5; margin-left: 1%">￥{{good.market_price}}</s>
+            </div>
+            <div style="color:#fff; line-height: 0vw; padding:0 2%;font-size: 3vw;">
+              <span>规格:{{good.specs}}</span>
+              <strong style="margin-left: 2%">法国大厨Alain Ducasse推荐</strong>
+            </div>
+          </div>
+          <div style="width:100%; height:22vw; padding:0 2%">
+            <div style="width:65%; margin: 5px 0; font-size: 3vw;display: inline-block; float:left">
+              <div style="line-height: 22px;">限量{{good.stock}}件：剩余 <strong style="color:#ff716c">{{good.stock-good.sales}}</strong> 件</div>
+              <div style="width:60%; position: absolute; background: #e6e6e6; height:10px; margin: 5px 0;"><span style="position: absolute; width:100*{{good.sales/good.stock}}%; background: #e10b00; height:10px;"></span></div>
+              <div style="line-height: 22px; color:#999;    margin-top: 6vw;">距结束还剩 <span style="color:#85d1f8">{{(good.end_time - now_time) | timeFormat}}</span></div>
+            </div>
+            <div style="width:35%; float: right;">
+              <div style="float:right;width: 80px; min-height: 80px; border-radius: 50%; font-weight: bold; font-size: 20px; text-align: center; line-height: 75px !important;-webkit-transform:rotate(-20deg); translate:rotate(-20deg); border:3px solid #fbee11; background:transparent; margin-top: -50px; color:#fbee11;  line-height: 32px;">已售罄</div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+
+
+  </ion-content>
+</ion-view>
+
+<style>
+  /*.has-header {*/
+  /*top: 84px !important;*/
+  /*}*/
+
+  .slider-pager{text-align: right !important; right:4%;}
+  .ion-record{ color:#fff !important;}
+  .bar.bar-assertive .title{ left:13vw !important; right:13vw !important;}
+  .button .icon:before{ font-size: 26px !important}
+</style>

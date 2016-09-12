@@ -1,0 +1,116 @@
+﻿<html class="fsvs demo">
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="海鲜,食材,生鲜,批发,采购,匠鲜,秀色可鲜,秀鲜,极鲜网,易网聚鲜,冻品互联,食务链">
+    <meta name="description" content="匠鲜，是一家基于互联网技术的环球海鲜解决方案供应商，精选全球精美海鲜， 搭建从产地到消费者之间的直供平台，为了方便消费者，我们搭建方便快捷的电子购物平台以及电视购物、企业直供等多元供应渠道。因为热爱，所以专注，让海鲜爱好者用最省心的方式，品尝到高级品质的海鲜产品，是我们永恒追求的目标。">
+
+    <title>匠鲜--环球海鲜解决方案供应商</title>
+    <!-- 添加 stylezhu.css -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/introduce.css">
+
+    <script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
+</head>
+<body>
+    <div id="header">
+        <div class="content">
+            <ul>
+                <li><img src="images/logo.gif"></li>
+                <li><img src="images/phone.gif"> 400-661-2061</li>
+                <li class="active type">联系我们</li>
+                <li class="type"><a href="join.html">加入我们</a></li>
+                <li class="type"><a href="news.html">匠鲜新闻</a></li>
+                <li class="type"><a href="index.html#xdlc">下单流程</a></li>
+                <li class="type"><a href="index.html">首页</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="mid">
+        <img src="images/contact1.png" class="main4bg">
+        <div class="bgCon">
+            <div class="fs50 fw" style="letter-spacing: 1px; line-height: 60px;">匠鲜</div>
+            <div class="fs32 fw mt30" style="letter-spacing: 1px; line-height: 32px;">好食材，找匠鲜</div>
+        </div>
+
+        <div class="about">
+            <div class="aboutUs">
+                <div class="title"><img src="images/contact2.png">关于我们</div>
+                <p>匠鲜，是一家基于互联网技术的环球海鲜解决方案供应商，精选全球精美海鲜，
+                    搭建从产地到消费者之间的直供平台，为了方便消费者，我们搭建方便快捷的电子购物平台以及电视购物、
+                    企业直供等多元供应渠道。因为热爱，所以专注，让海鲜爱好者用最省心的方式，品尝到高级品质的海鲜产品，
+                    是我们永恒追求的目标。</p>
+            </div>
+            <div class="introUs">
+                <div class="title"><img src="images/contact3.png">联系我们</div>
+                <p>电话：4006612061</p>
+                <p>邮箱：bd@jonthons.com</p>
+                <p>地址：上海市黄浦区西藏南路765号A栋1002室</p>
+            </div>
+        </div>
+
+
+        <div class="lx">
+            <div class="lxfs">
+                <ul>
+                    <li>
+                        <img src="images/model5_1.gif">
+                        <div>匠鲜微信公众号</div>
+                    </li>
+                    <li>
+                        <img src="images/model5_2.gif">
+                        <div>匠鲜微博</div>
+                    </li>
+                    <li>
+                        <img src="images/phone.gif">
+                        <span>400-661-2061</span>
+                        <div>周一至周日8点-20点</div>
+                    </li>
+                </ul>
+            </div>
+            <ul class="tips">
+                <li>
+                    <img src="images/model5_3.gif">
+                    <div>全天金牌服务</div>
+                </li>
+                <li>
+                    <img src="images/model5_4.gif">
+                    <div>100%优质资源</div>
+                </li>
+                <li>
+                    <img src="images/model5_5.png">
+                    <div>高效物流配送</div>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div id="footer">
+        copyright © 2016   &nbsp; &nbsp; 上海匠鲜网络科技有限公司    &nbsp; &nbsp;  沪ICP备16003628
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#img img").attr("alt","好食材，找匠鲜");
+        $("#img img").attr("title","好食材，找匠鲜");
+        $("#img img").css("width","110px");
+        $("#img").css("overflow","");
+        $("#img").html("<a href='http://www.jonthons.com'>"+$("#img").html()+"</a>")
+    })
+    $(function() {
+        if( document.body.scrollHeight < $(window).height()){
+
+            var height = $(window).height();
+            height -=40;
+            console.log(height);
+            $("#footer").css({"top":height,"position":"absolute"});
+        }
+
+
+    });
+
+</script>
+
+

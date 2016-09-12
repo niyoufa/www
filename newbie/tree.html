@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="css/base.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/tree.css">
+    <script src="js/jquery-1.11.2.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/ionic.bundle.js"></script>
+
+</head>
+<body>
+    <div id="header">
+        <div class="h_t">
+            <div class="h_t_content" ng-show="isLogin">
+                <nav>
+                    <a ng-click="doLogout()"><img src="images/main_loginOut.png">退出</a>
+                    <a><img src="images/main_user.png">{{userName}}</a>
+                    <a><img src="images/main_phone.png">15996458299</a>
+                </nav>
+            </div>
+            <div class="h_t_content" ng-hide="isLogin">
+                <nav>
+                    <a href="register.html"><img src="images/register.png">注册</a>
+                    <a href="login.html"><img src="images/login.png">登录</a>
+                    <a><img src="images/main_phone.png">15996458299</a>
+                </nav>
+            </div>
+        </div>
+        <div class="h_b">
+            <div class="h_b_content">
+                <img src="images/main_logo.png" class="logo" ng-click="toIndex()">
+                <ul>
+                    <li class="active"><a href="/newbie/index.html">首页</a></li>
+                    <li><a href="/newbie/shares.html">我的分享</a></li>
+                    <li><a href="#">我的收藏</a></li>
+                    <li><a href="#">开发者头条</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="mid">
+        <div class="tree col-lg-4">
+            <div class="source_code">源码</div>
+            <div class="API Reference">API索引</div>
+            <div class="Spec">知识索引</div>
+            <div class="Tutorial">入门教程</div>
+        </div>
+        <div class="blog col-lg-4">技术博客</div>
+        <div class="book col-lg-4">技术书籍</div>
+    </div>
+
+    <script>
+    </script>
+</body>
+</html>

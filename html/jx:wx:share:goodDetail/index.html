@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+<!--	<link href="libs/ionic.min.css" rel="stylesheet">-->
+<!--	<link href="libs/_slide-box.scss" rel="stylesheet">-->
+<!--	<link href="libs/_slides.scss" rel="stylesheet">-->
+<!--	<link href="libs/ionic.scss" rel="stylesheet">-->
+
+	<script src="libs/jquery.min.js"></script>
+	<script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+	<script src="libs/ionic.min.js"></script>
+
+
+
+	<title>商品详情</title>
+	<!--<script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>-->
+	<!--<script src="main.js"></script>-->
+
+	<!--<script data-require="angular.js@1.2.x" src="https://code.angularjs.org/1.2.20/angular.js" data-semver="1.2.20"></script>-->
+
+	<style>
+		*{ margin: 0; padding:0}
+	</style>
+
+</head>
+<body>
+<div ng-app="myApp" ng-controller="customersCtrl">
+
+	<div class="titleImg">
+		<img src={{good.banners[0]}} class="img">
+		<!--<ion-slide-box auto-play="true" does-continue="true" slide-interval="1500" >-->
+			<!--<ion-slide ng-repeat="banner in good.banners">-->
+				<!--<img ng-src="{{banner}}" class="img">-->
+			<!--</ion-slide>-->
+		<!--</ion-slide-box>-->
+
+		<div style="width:100%; height:60px; margin-top: -60px; background: rgba(0,0,0,0.4); position: absolute">
+			<div style="width:56%; padding-left: 4%; float: left;">
+				<div style="color:#fff; line-height: 40px;">
+                    <span style="font-size: 18px"><strong>{{good.box_name}}</strong> </span>
+				</div>
+				<div style="color:#fff; line-height: 10px;font-size:12px">
+                    <span>规格:{{good.specs}}</span>
+				</div>
+			</div>
+			<div style="width:40%; float: left; color:#fff;">
+                <div style="line-height: 35px; font-size: 14px">活动价:<span style="color:#ffcc00;  font-size: 16px;">￥{{good.shop_price}}/{{good.unit}}</span></div>
+                <s style="font-size: 14px; display: block; line-height: 10px; color:#cccbc5; margin-left: 1%">原价：￥{{good.market_price}}/{{good.unit}}</s>
+			</div>
+		</div>
+	</div>
+
+
+
+	<div style="text-align:center;margin-top: 6px; border-top:1px solid #eeeeee; background: #fff; width:100%; padding-bottom: 10px;">
+		<strong style="line-height: 30px; font-size: 16px">详细描述</strong>
+		<!--<img src="images/13526_03.png" style="width:100%">-->
+		<!--<img src="images/13526_04.png" style="width:100%">-->
+		<!--<img src="images/13526_05.png" style="width:100%">-->
+		<!--<img src="images/13526_06.png" style="width:100%">-->
+		<!--<img src="images/13526_07.png" style="width:100%">-->
+		<!--<img src="images/13526_08.png" style="width:100%">-->
+		<!--<img src="images/13526_09.png" style="width:100%">-->
+		<!--<img src="images/13526_10.png" style="width:100%">-->
+		<!--<img src="images/13526_11.png" style="width:100%">-->
+		<!--<img src="images/13526_12.png" style="width:100%">-->
+
+
+		<div id="detailHtml"></div>
+	</div>
+
+	<img src="images/codeA.png" style="width:35%; margin: 20px 10% 5px 10%; float: left;">
+	<img src="images/codeI.png" style="width:35%; margin: 20px 10% 5px 0; float: left;">
+    <div  style="width:35%; margin: 0 10% 10px 10%; line-height: 30px; float: left; font-size: 16px; text-align: center">Android下载</div>
+	<div  style="width:35%; margin: 0 10% 10px 0; line-height: 30px; float: left;font-size: 16px; text-align: center">Ios下载</div>
+	</div>
+
+<script>
+    var url = location.search;
+    var str = url.substring(url.indexOf("=") + 1);
+    
+    
+	var app = angular.module('myApp', []);
+	app.controller('customersCtrl', function($scope,$http,$compile) {
+		$http.get('https://www.jonthons.com/api/goods?goods_id='+str)
+				.success(function (response)
+				{
+					$scope.good = response.response.data;
+
+					// 默认商品价格
+//					$scope.detail=response.response.data.goods_desc;5728837e988c7d3370173f19
+					var ele = $compile($scope.good.goods_desc)($scope);
+					angular.element($('#detailHtml')).append(ele);
+				});
+	});
+</script>
+
+
+</body>
+</html>
+
+<style>
+	.titleImg{ width:100%;}
+	.titleImg img{ width:100%; }
+	p{ padding: 0 !important; margin: 0!important;}
+	img{
+		width: 100%;display: inherit;
+	}
+	.u-flyer {display: block;width: 50px;height: 50px;border-radius: 50px;position: fixed;z-index: 100;}
+
+</style>
+
