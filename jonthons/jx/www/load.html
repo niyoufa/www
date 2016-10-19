@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="https://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
+  <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+  <script src="lib/ionic/js/ionic.bundle.js"></script>
+</head>
+<body ng-app="load" ng-controller="locadCtrl">
+
+</body>
+<script>
+  var url=window.location.href;
+  var user_id='';
+  if(url.split('?').length==2){
+    var back=url.split('?')[1];
+    localStorage.setItem("shareid",back.split('=')[1]);
+//    alert(split('=')[1]);
+  }
+
+  var app = angular.module('load', []);
+  app.controller('locadCtrl', function() {
+    window.location.href="https://open.weixin.qq.com/connect/oauth2/authorize?" +
+      "appid=wxea2f7cdb51e3c9ab" +
+      "&redirect_uri=https%3a%2f%2fwww.jonthons.com%2fjx%2fwww%2findex.html%3fuserid%3d" +user_id+
+      "&response_type=code" +
+      "&scope=snsapi_userinfo" +
+      "&state=STATE#wechat_redirect";
+  });
+</script>
+</html>

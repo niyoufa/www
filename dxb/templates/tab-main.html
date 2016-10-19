@@ -1,0 +1,59 @@
+<ion-view view-title="东信宝" hide-back-button="true">
+  <!--<ion-slide-box style="width:100vw;height: auto ;margin-top:10px;" does-continue="true" auto-play="true" slide-interval="3000" on-slide-changed="haha">-->
+  <ion-content  style="background: #ededed">
+    <div style="background: #fff;width: 100%;">
+      <ion-slide-box does-continue="true" auto-play="true" slide-interval="3000">
+        <ion-slide  ng-repeat="banner in banners" >
+          <div style="width: 100vw" > <img ng-src="{{basePath}}{{banner.file_path}}" style="width: 100%;height: 140px " /></div>
+        </ion-slide>
+      </ion-slide-box>
+      <div>
+        <div style="text-align: center;padding: 10px;">
+          <span style="color: #3a85cd;font-size: 1.5em;">企业信息查询领航者</span>
+        </div>
+        <div >
+          <input id="inputInfo" type="text" style="border-radius: 5px 0 0 5px;width: 76vw;height:35px;border: 1px solid #cccccc;padding-left: 2px;float: left;margin-left: 2vw;" placeholder="请输入企业名称、注册号或者人名">
+          <div style="margin-right: 2vw;border-radius:0 5px 5px 0 ;line-height: 35px;text-align: center;width: 20vw;height: 35px;background-color: #46a8ed;float: right;padding-top: 5px;padding-left: 10px;padding-right: 10px;padding-bottom: 5px;" ng-click="toSearch()">
+            <img ng-src="img/searauto14.png" style="width: 27px;height: 27px;">
+          </div>
+        </div>
+        <br>
+        <br>
+        <div style="width: 100%;height: 40px;line-height: 40px;color: #545454;padding:0 2vw;position: relative">
+          <span style="margin-left: 2vw"><b>热搜</b></span>
+          <img ng-src="img/broadcast.png" style="border-left: 1px solid #dfdfdf;position: absolute;left: 48px; top: 12px;">
+          <div   style="position: absolute;left: 75px;top: 1px;">
+            <span  ng-click="toHotSearch(hot.word)" ng-repeat="hot in hots">{{hot.word}}&nbsp&nbsp</span>
+          </div>
+          <div ng-click="changeHot()" style="width: 70px;height: 30px;float: right;position: relative;line-height: 30px;margin-top: 6px">
+            <span>换一批</span>
+            <img style="position: absolute;right:11px;top: 8px;" ng-src="img/turn.png">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="width: 100%;padding: 0 2vw;height: 40px;line-height: 40px">
+      <span style="float: left;font-size: 1.4em;color: #545454"><b>热门企业:</b></span>
+      <span ng-click="toHotCompanyMore()" style="float: right;font-size: 1em;color: #545454"><u>查看更多</u></span>
+    </div>
+    <div style="width: 100%;padding: 0 2vw">
+      <div ng-click="toCompany(data)" style="margin-bottom: 2vw;padding: 3vw;float: left;width: 100%;background-color: #ffffff" ng-repeat="data in hotCompanys track by $index" ng-if="sourceData.length!=0">
+
+        <img src={{basepath+data.image}} style="width: 30%;float: left;padding: 7px 4px 7px 4px">
+
+        <div style="width: 57%;float: left;padding: 7px 7px 0 7px">
+          <div style="color: #7f7f7f"><b>{{data.name}}</b></div>
+          <div style="font-size: 13px;color: #686868">公司法人：{{data.opername}}</div>
+          <div style="font-size: 13px;color: #686868">注册资本：{{data.basicinfo.regcap|number:0}}万元</div>
+          <div style="font-size: 13px;color: #686868">成立时间：{{data.startdate | limitTo:19}}</div>
+        </div>
+
+        <img src="img/company_diaoxiao.png" style="width: 13%;float: right;" ng-if="data.status=='吊销'">
+        <img src="img/company_diaoxiao.png" style="width: 13%;float: right;" ng-if="data.status=='注销'">
+        <img src="img/company_zaiying.png" style="width: 13%;float: right;" ng-if="data.status=='在营（开业）'">
+        <img src="img/company_diaoxiao.png" style="width: 13%;float: right;" ng-if="data.status=='其他'">
+
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

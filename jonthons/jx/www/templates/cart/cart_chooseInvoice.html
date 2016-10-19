@@ -1,0 +1,15 @@
+<ion-view view-title="选择发票">
+  <ion-nav-buttons side="right">
+    <button class="button button-clear" ng-click="toAddInvoice()">添加</button>
+  </ion-nav-buttons>
+  <ion-content>
+    <ion-list>
+      <ion-item ng-repeat="invoice in invoices" ng-click="toChooseInvoice(invoice)">
+        <p>发票类型:{{invoice.type_name}}</p>
+        <p>发票抬头:{{invoice.invoice_header}}</p>
+        <ion-option-button class="button-positive">编辑</ion-option-button>
+        <ion-option-button class="button-assertive">删除</ion-option-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,30 @@
+<ion-view title="登录">
+  <ion-content class="padding" style="background-color: #f2f2f2">
+
+    <input class="item-input" placeholder="手机号" ng-model="user.mobile" style="width: 100%;margin-top: 20px;">
+    <input class="item-input" placeholder="密码" ng-model="user.password" style="width: 100%;margin-top: 20px;">
+
+    <button class="button button-positive" style="width: 100%;margin-top: 20px" ng-click="doLogin()">登录</button>
+
+    <div class="row" style="margin-top: 20px">
+      <div class="col-40" style="text-align: center">
+        <span style="padding: 15px;" ng-click="toRegister()">注册账号</span>
+      </div>
+      <div class="col-20">
+        <div style="width: 1px;height: 100%;background-color: #3e3e3e;margin-left: 49%"></div>
+      </div>
+      <div class="col-40">
+        <span style="padding: 15px;" ng-click="toForgetPassowrd()">忘记密码</span>
+      </div>
+    </div>
+
+    <div style="margin-top: 20px;text-align: center">
+      <span style="color: #3e3e3e">---------- 第三方登录 ----------</span>
+    </div>
+
+    <div style="width: 100%;text-align: center;margin-top: 10px;">
+      <img ng-src="img/wx_login_logo.png" width="20%" ng-click="doLoginWX()">
+    </div>
+
+  </ion-content>
+</ion-view>

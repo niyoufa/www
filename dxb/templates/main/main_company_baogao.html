@@ -1,0 +1,45 @@
+<ion-view title="尽调报告">
+  <ion-content>
+
+    <div>
+      <span style="margin-top: 20px;">信用报告包括所有的已有数据维度，为您提供企业全方位的信息评估</span>
+      <div class="row" style="margin-top: 20px;">
+        <div class="col" style="text-align: center;padding-top: 50px;">
+          <span style="color: #ff0000;font-size: 3em;">￥{{baogao.price}}</span>
+        </div>
+        <div class="col">
+          <span>包含如下维度</span><br>
+          <span style="color: #ff0000">1.企业工商信息</span><br>
+          <span style="color: #ff0000">2.企业变更信息 </span><br>
+          <span style="color: #ff0000">3.企业对外投资信息</span><br>
+          <span style="color: #ff0000">4.被执行人信息 </span><br>
+          <span style="color: #ff0000">5.失信被执行信息</span><br>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div style="width: 30%;float: left;text-align: center;margin-top: 10px;">接收邮箱</div>
+      <div style="width: 70%;float: right">
+        <input type="text" placeholder="请输入您的接收邮箱" ng-model="user.email">
+      </div>
+    </div>
+    <div>
+      <div style="width: 30%;float: left;text-align: center;margin-top: 10px;">联系电话</div>
+      <div style="width: 70%;float: right">
+        <input type="text" placeholder="请输入您的联系电话" ng-model="user.mobile">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col" style="text-align: center">
+        <button class="button button-positive button-small" style="width: 25vw" ng-click="toPay()">确定购买</button>
+      </div>
+      <div class="col" style="text-align: center">
+        <button class="button button-positive button-small" style="width: 25vw" ng-click="toModel()">模板预览</button>
+      </div>
+    </div>
+
+
+  </ion-content>
+</ion-view>

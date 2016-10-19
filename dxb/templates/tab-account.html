@@ -1,0 +1,47 @@
+<ion-view view-title="我">
+  <ion-content style="background: #efeff4;width: 100vw;">
+
+
+    <dl style="width:100vw; padding:3vw 2vw; border-bottom: 1px solid #e0e0e0;background: #ffffff;text-align:center;">
+      <dt style="width:18%;margin:10px auto;"><img ng-src="{{headimgurl}}" style="width:100%; border-radius:50%;"></dt>
+      <dd style="text-align: center;color: #fff;background-color: #2196F3;padding:0 10px;margin-left: auto;margin-right: auto; border-radius: 16px;line-height: 25px;margin-top: -20px;z-index: 9;position: relative;display:inline-block;top:-14px;"><span ng-bind="nickname"></span>
+      </dd>
+    </dl>
+
+    <div style="background: #fff;width: 100vw;padding:0 22px;margin-top: 20px;border-top: 1px solid #d9d9d9;border-bottom: 1px solid #d9d9d9">
+
+      <ul style="position: relative">
+        <li ng-click="toAccountOrder()" style="height: 45px;line-height: 45px;position: relative;border-bottom: 1px solid #d9d9d9;background: url('img/01.png') no-repeat 0 center;background-size: 25px 25px;padding-left: 35px;">
+          我的订单
+          <i style="float: right;font-size: 20px;color:#c7c7cc;" class="icon ion-ios-arrow-right"></i>
+        </li>
+
+        <li ng-click="toBindTel()" style="height: 45px;line-height: 45px;border-bottom: 0.5px solid #d9d9d9;background: url('img/02.png') no-repeat 0 center;background-size: 25px 25px;padding-left: 35px;">
+          绑定手机号
+          <i style="float: right;font-size: 20px;color:#c7c7cc;" class="icon ion-ios-arrow-right"></i>
+        </li>
+
+        <li ng-click="toAdivce()" style="height: 45px;line-height: 45px;background: url('img/03.png') no-repeat 0 center;background-size: 25px 25px;padding-left: 35px;">
+          意见反馈
+          <i style="float: right;font-size: 20px;color:#c7c7cc;" class="icon ion-ios-arrow-right"></i>
+        </li>
+
+        <li  style="height: 20px;width: 100vw; background-color: #efeff4;margin-left: -22px;">
+
+        </li>
+
+        <li ng-click="toFuwu()" style="height: 45px;line-height: 45px;border-bottom: 0.5px solid #d9d9d9;background: url('img/04.png') no-repeat 0 center;background-size: 25px 25px;padding-left: 35px;">
+          服务协议
+          <i style="float: right;font-size: 20px;color:#c7c7cc;" class="icon ion-ios-arrow-right"></i>
+        </li>
+
+        <li ng-click="toGuanyu()" style="line-height: 45px;background: url('img/05.png') no-repeat 0 center;background-size: 25px 25px;padding-left: 35px;">
+          关于我们
+          <i style="float: right;font-size: 20px;color:#c7c7cc;" class="icon ion-ios-arrow-right"></i>
+        </li>
+
+      </ul>
+    </div>
+  </ion-content>
+</ion-view>
+

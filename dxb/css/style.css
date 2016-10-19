@@ -1,0 +1,5 @@
+/* Empty. Add your own CSS if you like */
+.comingSoon{position: fixed;width: 26%;margin-left: 37%;text-align:center;border-radius:13px;margin-top:78%;height: 30px;line-height:30px;background:#000;color:#fff;z-index: 9999;display: none}
+.bar.bar-stable {background: #0474c6;}
+.bar.bar-stable .title {color: #fff; }
+.bar-stable .button.button-clear {color:#fff}

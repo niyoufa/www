@@ -1,0 +1,44 @@
+<ion-view title="绑定手机号">
+  <ion-content class="" style="background: #f2f2f2">
+
+
+    <!--<div style="margin-top: 5vh" >-->
+      <!--<input id="phone"  maxlength="11" style="margin: 0 9vw;height: 47px;width: 76vw;border: 1px solid #a7a7a7;border-radius: 2px" placeholder="请输入您要更换的手机号">-->
+      <!--<br>-->
+      <!--<br>-->
+      <!--<div style="margin: 0 9vw">-->
+        <!--<input id="inputCode" maxlength="6" class="input-label" style="width: 50vw;float: left;height: 47px;border: 1px solid #a7a7a7;border-right: none" placeholder="请输入手机验证码">-->
+        <!--<button id="code" class="button" style="border: 1px solid #a7a7a7;width: 100px;height: 30px;font-size: small;float: left;" ng-click="getCode()">{{mymodel}}</button>-->
+      <!--</div>-->
+
+      <!--<br>-->
+      <!--<br>-->
+
+      <!-- -->
+
+    <!--</div>-->
+
+
+
+    <div style="width:100%; margin-top: 5vw; line-height: 35px; font-size: 4vw;">
+      <ul style="background-color:#fff;">
+        <li style="width:100%; height:45px; border-bottom: 1px solid #eee;">
+          <label style="float:left;padding:13px 0 0 15px;">手机号</label>
+          <input id="phone" type="tel" placeholder="请输入手机号" style=" float:left; font-size: 4vw;height:42px; width:50%; margin-top: 2px; padding-left: 2vw;">
+          <div id="code" style="width:30%; text-align: center; color:#fff; float: left;background:#00a0fe;border-radius:4px;margin-top:4px;"ng-click="getCode()">{{mymodel}}</div>
+        </li>
+        <li style="width:100%; height:45px; border-bottom: 1px solid #eee;">
+          <label style="float:left;padding:11px 0 0 15px;">验证码</label>
+          <input id="inputCode" type="text" placeholder="请输入验证码" style=" font-size: 4vw; padding-left: 2vw; height:42px;">
+        </li>
+      </ul>
+
+      <button id="commit" class="button button-dark button-block" style="margin-left: 10%;width: 80%;background-color:#2196F3;margin-top:40px;"  ng-click="commit()">确认</button>
+
+
+    </div>
+
+
+
+  </ion-content>
+</ion-view>

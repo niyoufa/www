@@ -1,0 +1,86 @@
+<ion-view title="我的订单">
+  <ion-content on-drag-left="toDragLeft()" on-drag-right="toDragRight()">
+
+    <ion-refresher pulling-text="刷新中..." on-refresh="doRefresh()"></ion-refresher>
+
+    <div class="row" style="height: 35px; background-color: #fff;padding-bottom: 0px;">
+      <div ng-click="paidClick()"class="col-50" style="text-align: center;">
+        <b>已完成</b>
+        <hr ng-if="ispaid" style="width: 95%;border:1px solid #3F51B5;margin:0px;position:relative;margin-top: 8px;">
+      </div>
+      <div ng-click="unpaidClick()"  class="col-50" style="text-align: center;">
+        <b >待支付</b>
+        <hr ng-if="!ispaid" style="width: 95%;border: 1px solid #3F51B5;margin:0px;position:relative;margin-top: 8px;">
+      </div>
+    </div>
+
+
+
+    <!--已支付列表-->
+    <div style="background-color:#dfdfdf;padding:20px 0;" ng-if="ispaid">
+      <div class="myorderfblank"  ng-repeat="order in paied" on-swipe-left="turnNoPay()" on-drag-left="toDragLeft()">
+        <!--订单号+定的时间-->
+        <span class="myorderspan" style="font-weight: bold"><b>订单号:&nbsp</b> {{order.order_id}}</span>
+        <span class="myorderspan" style="float: right;margin-right: 10px">{{order.add_time | limitTo:10}}</span>
+        <div class="myorderline"></div>
+
+        <div >
+          <!--产品名称-->
+          <!--查询公司-->
+          <!--订单价格-->
+          <span style="display:block; margin-left: 20px;margin-right:20px;color: #666666;font-size: 10px;margin-top: 5px;"><span>产品类型:&nbsp</span> 企业尽调报告</span>
+          <span style="display: block;margin-left: 20px;margin-right:20px;color: #666666;font-size: 10px;margin-top: 5px;"><span>查询公司:&nbsp</span> {{order.enterprise.entname}}</span>
+          <span style="display: block; margin-left: 20px;margin-right:20px;color: #666666;font-size: 10px;margin-top: 5px;"><span>订单价格:&nbsp</span> {{order.goods_amount}}元</span>
+
+        </div>
+      </div>
+    </div>
+    <div style="width: 100%;margin-top: 50px;text-align: center;color: #4d4d4d;background: #fff" ng-if="ispaid&&paied.length==0&&hasmore==false">暂无订单!</div>
+
+
+    <!--未支付列表-->
+    <div style="background:rgb(223, 223, 223);padding:20px 0;" ng-if="!ispaid">
+      <div class="myorderfblank" ng-repeat="order in noPay" on-swipe-right="turnPay()" on-drag-right="toDragRight()">
+        <!--订单号+定的时间-->
+        <span class="myorderspan" style="font-weight: bold"><b>订单号:&nbsp</b> {{order.order_id}}</span>
+        <span class="myorderspan" style="float: right;margin-right: 10px">{{order.add_time | limitTo:10}}</span>
+        <div class="myorderline"></div>
+
+        <div >
+          <!--产品名称-->
+          <!--查询公司-->
+          <!--订单价格-->
+          <span style="display: block; margin-left: 20px;margin-right:20px;color: #666666;font-size: 10px;margin-top: 5px;"><span>产品类型:&nbsp</span> 企业尽调报告</span>
+          <span style="display: block; margin-left: 20px;margin-right:20px;;color: #666666;font-size: 10px;margin-top: 5px;"><span>查询公司:&nbsp</span> {{order.enterprise.entname}}</span>
+          <span style="display: block; margin-left: 20px;margin-right:20px;color: #666666;font-size: 10px;margin-top: 5px;"><span>订单价格:&nbsp</span> {{order.goods_amount}}</span>
+
+          <!--取消订单 + 去支付-->
+          <div style="float: left; width: 80%;margin-left: 10%;margin-top: 10px;">
+            <button style="width: 70px;height: 25px; border: 1px solid #FF9800;font-size: 10px;float: right;background: #FF9800;color: #fff;border-radius: 25px;margin-left: 15px;" ng-click="toPay(order)" >去支付 ></button>
+            <button style="width: 70px;height: 25px;border: 1px solid #FF9800;font-size: 10px;float: right;background: #fff;color: #FF9800;border-radius: 16px;" ng-click="cancelOrder(order._id)">取消订单</button>
+            <div style="clear:both;"></div>
+          </div>
+          <div style="clear:both;"></div>
+        </div>
+      </div>
+    </div>
+    <div style="width: 100%;margin-top: 50px;text-align: center;color: #4d4d4d;background: #fff" ng-if="!ispaid&&noPay.length==0&&hasmore==false">暂无订单!</div>
+
+    <ion-infinite-scroll  ng-if="hasmore==true" on-infinite="loadMore()" distance="5%" ></ion-infinite-scroll>
+    <div style="text-align: center" ng-if="hasmore == true">
+      <span>{{infiniteInfo}}</span>
+    </div>
+
+  </ion-content>
+
+
+
+  <style type="text/css">
+    .myorderspan{margin-left: 20px;color: #666666;display: inline-block;font-size: 10px;margin-top: 5px;}
+    /*.myorderdelete{float: right;color: #ce0f36;font-size: 15px;margin-right: 10px;margin-top: 5px;}*/
+    .myorderline{width: 100%;height: 1px;background-color: #dfdfdf;margin-top: 5px;}
+    /*.myorderbootomspan{margin-left: 20px;color: #4cafe8;width: 180px;height: 30px;line-height: 30px;display: inline-block}*/
+    .myorderfblank{width: 93%;padding-bottom:10px;background-color: #fff;margin: 20px auto;margin-top:0;border-radius:8px;}
+  </style>
+
+</ion-view>

@@ -1,0 +1,85 @@
+<html class="fsvs demo">
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="海鲜,食材,生鲜,批发,采购,匠鲜,秀色可鲜,秀鲜,极鲜网,易网聚鲜,冻品互联,食务链">
+    <meta name="description" content="匠鲜，是一家基于互联网技术的环球海鲜解决方案供应商，精选全球精美海鲜， 搭建从产地到消费者之间的直供平台，为了方便消费者，我们搭建方便快捷的电子购物平台以及电视购物、企业直供等多元供应渠道。因为热爱，所以专注，让海鲜爱好者用最省心的方式，品尝到高级品质的海鲜产品，是我们永恒追求的目标。">
+
+    <title>匠鲜--环球海鲜解决方案供应商</title>
+    <!-- 添加 stylezhu.css -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/news.css">
+
+    <script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
+</head>
+<body>
+    <div id="header">
+        <div class="content">
+            <ul>
+                <li><img src="images/logo.gif"></li>
+                <li><img src="images/phone.gif"> 400-661-2061</li>
+                <li class="type"><a href="introduce.html">联系我们</a></li>
+                <li class="type"><a href="join.html">加入我们</a></li>
+                <li class="active type">匠鲜新闻</li>
+                <li class="type"><a href="index.html#xdlc">下单流程</a></li>
+                <li class="type"><a href="index.html">首页</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="mid">
+        <img src="images/news1.png" class="main3bg">
+        <div class="bgCon">
+            <div class="fs50 fw" style="letter-spacing: 1px;">匠鲜新闻</div>
+        </div>
+        <div class="content">
+            <ul>
+
+
+            </ul>
+        </div>
+    </div>
+
+    <div id="footer">
+        copyright © 2016   &nbsp; &nbsp; 上海匠鲜网络科技有限公司    &nbsp; &nbsp;  沪ICP备16003628
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#img img").attr("alt","好食材，找匠鲜");
+        $("#img img").attr("title","好食材，找匠鲜");
+        $("#img img").css("width","110px");
+        $("#img").css("overflow","");
+        $("#img").html("<a href='https://www.jonthons.com'>"+$("#img").html()+"</a>")
+    })
+    $(function(){
+       $.ajax({
+           url:"https://www.jonthons.com/admin/news",
+           type: "get",
+           data: "",
+           dataType: "json",
+           success: function (res) {
+               for (var i = 0; i < res.response.data.length; i++) {
+				   if(res.response.data[i].url=="")					
+					   res.response.data[i].url="newsdetail.html?news_id="+res.response.data[i]._id
+                   var html = "<li class='type'>" +
+                                "<a href='"+res.response.data[i].url+"'>"+
+                                "<div class='date'>" + res.response.data[i].add_time.substring(0,4)+"年"+ res.response.data[i].add_time.substring(5,7)+"月"+res.response.data[i].add_time.substring(8,10)+"日</div>" +
+                                "<div class= 'detail'>"+
+                                   "<div class= 'name' >"+res.response.data[i].title+"</div >"+
+                                   "<p>"+res.response.data[i].content+"</p>"+
+                                   "<div class='img'>"+
+                                        res.response.data[i].img +
+                                   "</div>"+
+                                "</div>"+
+                                   "</a>"+
+                                "</li>";
+                   $("#mid .content ul").append(html);
+               }
+           }
+       })
+    })
+
+</script>
+
+

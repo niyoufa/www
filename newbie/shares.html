@@ -10,6 +10,7 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/index.js"></script>
     <script src="js/ionic.bundle.js"></script>
+    <script src="js/ionic.bundle.js"></script>
 
 </head>
 <body>
@@ -36,7 +37,7 @@
                 <ul>
                     <li><a href="/newbie/index.html">首页</a></li>
                     <li class="active"><a href="/newbie/shares.html">我的分享</a></li>
-                    <li><a href="#">我的收藏</a></li>
+                    <li><a href="#">最热文章</a></li>
                     <li><a href="#">开发者头条</a></li>
                 </ul>
             </div>
@@ -54,102 +55,47 @@
             <button class="btn">搜索</button>
             <div class="float"></div>
         </div>
-        <div class="articels">
+        <div id="pagination" class="text-center" style="display:none;">
+                <button class="pre btn btn-default" >上一页</button>
+                <button class="next btn btn-default">下一页</button>
         </div>
+        <div class="articels"></div>
 
-        <div class="text-center">
-            <ul class="pagination">
-                <li class="first">
-                    <a href="javascript:alert('ok');">« 第一页</a>
-                </li>
+        <!--<div class="text-center">-->
+            <!--<ul class="pagination">-->
+                <!--<li class="first">-->
+                    <!--<a href="javascript:alert('ok');">« 第一页</a>-->
+                <!--</li>-->
 
-                <li class="prev">
-                    <a rel="prev">‹ 上一页</a>
-                </li>
+                <!--<li class="prev">-->
+                    <!--<a rel="prev">‹ 上一页</a>-->
+                <!--</li>-->
 
-                <li class="page">
-                    <a rel="prev">1</a>
-                </li>
+                <!--<li class="page">-->
+                    <!--<a rel="prev">1</a>-->
+                <!--</li>-->
 
-                <li class="page active">
-                    <a>2</a>
-                </li>
+                <!--<li class="page active">-->
+                    <!--<a>2</a>-->
+                <!--</li>-->
 
-                <li class="page">
-                    <a rel="next">3</a>
-                </li>
+                <!--<li class="page">-->
+                    <!--<a rel="next">3</a>-->
+                <!--</li>-->
 
 
-                <li class="next">
-                    <a rel="next">下一页 ›</a>
-                </li>
+                <!--<li class="next">-->
+                    <!--<a rel="next">下一页 ›</a>-->
+                <!--</li>-->
 
-                <li class="last">
-                    <a>末页 »</a>
-                </li>
+                <!--<li class="last">-->
+                    <!--<a>末页 »</a>-->
+                <!--</li>-->
 
-            </ul>
-        </div>
+            <!--</ul>-->
+        <!--</div>-->
 
     </div>
-
-    <script>
-        var my_share_list_url = "http://localhost:30002/api/link/list" ;
-        query_params = {};
-        //格式化字符串
-        String.format = function(src){
-            if (arguments.length == 0) return null;
-            var args = Array.prototype.slice.call(arguments, 1);
-            return src.replace(/\{(\d+)\}/g, function(m, i){
-                return args[i];
-            });
-        };
-
-        $(function(){
-            $("#mid .newbie-app button").click(function(){
-                alert("敬请期待！");
-            });
-
-            query_params["page"] = 3;
-            getMyShares(query_params);
-
-            $("#mid .search button").click(function(){
-                searchMyShare();
-            });
-
-        })
-
-        function getMyShares(query_params){
-            $.get(my_share_list_url,query_params,function(data){
-                if(data["response"]["success"] != 1){
-                    alert(data["response"]);
-                    return;
-                }else{
-                    links = data["response"]["data"];
-                    $("#mid .articels").empty();
-                    for(var i=0,len=links.length;i<len;i++){
-                        $("#mid .articels").append(String.format(''+
-                            '<div class="articel">'+
-                                '<a href={0} target="blank"><span class="title">{1}</span></a><br>'+
-                                '<span class="source">{2}</span>'+
-                            '</div>'
-                        ,links[i]["href"],links[i]["title"],links[i]["source"]))
-                    }
-                }
-            });
-        }
-
-        function searchMyShare(){
-            var keyword = $("#mid .search input").val();
-            query_params["keyword"] = keyword;
-            query_params["page"] = 1;
-            getMyShares(query_params);
-        }
-
-        function pageMyShare(){
-
-        }
-
-    </script>
+    <script src="js/newbie/shares.js"></script>
 </body>
 </html>
