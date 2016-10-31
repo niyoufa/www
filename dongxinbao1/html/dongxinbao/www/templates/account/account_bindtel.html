@@ -1,0 +1,11 @@
+<ion-view title="绑定手机号">
+  <ion-content>
+    <input id="phone" class="input-label" maxlength="11" style="margin-left: 10px;margin-right: 20px;width: 100vw" placeholder="请输入您要更换的手机号">
+    <div>
+      <input id="inputCode" maxlength="6" class="input-label" style="margin-left: 10px;width: 50vw;float: left" placeholder="请输入手机验证码">
+      <button id="code" class="button" style="width: 100px;height: 30px;font-size: small;float: left" ng-click="getCode()">{{mymodel}}</button>
+
+    </div>
+    <button id="commit" class="button button-dark button-block" style="margin-left: 10px;margin-right: 20px" ng-click="commit()">确认</button>
+  </ion-content>
+</ion-view>

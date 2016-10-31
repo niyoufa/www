@@ -1,0 +1,75 @@
+<ion-view title="域名信息">
+  <ion-content style="background: #f1f1f1">
+
+    <div style="width:100%; padding:3vw 0; background: #037ed7; color:#fff; font-size: 4vw; text-align:center">
+      <div style="width:100%;font-size: 5.5vw; margin-bottom: 15px">{{company.enttype}}</div>
+      <span style="font-size: 3vw; background: #1291eb; padding: 2px 8px; border-radius: 8px;">更新：{{company.add_time | limitTo:19}}</span>
+      <div style="width:100%; text-align: right; padding-right: 4vw; margin-top: 5px; font-size: 3vw;"><img src="img/viewa7.png" style="width:15px;"> 浏览{{company.count}}次</div>
+      <div style="width:100%; height:60px; background: #037ed7"></div>
+    </div>
+    <div style="width:100%; height:60px; margin-top: -60px; background: rgba(0,0,0,0.4); color:#fff">
+      <ul>
+        <li style="width:33%; text-align: center; float: left; border-right: 1px solid rgba(255,255,255,0.5); height:30px; margin-top: 15px;">
+          <div class="bigName">{{company.frname}}</div>
+          <div class="smallName">法定代表人</div>
+        </li>
+        <li style="width:34%;text-align: center; float: left; border-right: 1px solid rgba(255,255,255,0.5); height:30px; margin-top: 15px;">
+          <div class="bigName">{{company.regcap}}</div>
+          <div class="smallName">注册资金</div>
+        </li>
+        <li style="width:33%;text-align: center; float: left;height:30px; margin-top: 15px;">
+          <div class="bigName">{{company.esdate}}</div>
+          <div class="smallName">成立日期</div>
+        </li>
+      </ul>
+    </div>
+
+    <div style="width:100%; padding: 0 4%; line-height: 35px; background: #fff; border-bottom: 1px solid #e0e0e0; height:35px;">
+      <span style="background: #037ed7; float: left; width:20px; height:20px; text-align: center; margin-top: 8px; display: inline-block; border-radius: 50%;">
+        <i class="ion ion-ios-telephone" style="color:#fff; font-size: 6vw; position: absolute; margin-left: -5px;"></i>
+      </span>
+      <div style="display: inline-block;font-size: 4.5vw; margin-left: 4px; color:#666">0571-674664589</div>
+      <div style="float: right;color:#666" class="otherConnect" ng-click="otherConnect()"><span>其他联系方式</span> <i class="ion ion-ios-arrow-down" style="color:#666; font-size: 5vw;"></i></div>
+    </div>
+
+
+
+    <div class="prompt hide">
+      <div class="layerBg">
+        <div class="content">
+          <p class="fw" style="font-size: 5vw;">选择其他联系方式</p>
+          <div ng-click="selectConnect('选择其他联系方式1')">
+            <span class="only">选择其他联系方式1</span>
+          </div>
+          <div ng-click="selectConnect('其他联系方式2')">
+            <span class="only">其他联系方式2</span>
+          </div>
+          <div ng-click="selectConnect('联系方式3')">
+            <span class="only">联系方式3</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <style>
+      .hide{ display: none;}
+      .bigName{ font-size: 5vw; margin-top: -8px;}
+      .smallName{ font-size: 3vw; margin-top: 5px;}
+      .weidu{ width:100%; height:80vw}
+      .weidu li{ float: left; width:25vw; height:25vw; border: 1px solid #f1f1f1; background: #fff;}
+      .weidu li:nth-child(4n){ border-right: none;}
+      .weidu li i{ font-style: normal; position: absolute;margin-left: 19vw; color:#999}
+      .weidu li img{ width:60%; margin-left: 20%; margin-top: 2vw;}
+      .weidu li div{ width:100%; text-align: center; margin-top: -1vw}
+
+      /*蒙层提示prompt*/
+      .prompt{width: 100vw;height: 100vh;overflow: hidden;background: rgba(0,0,0,0.5);position: absolute;top: 0;color: #666;z-index: 100;}
+      .layerBg{ width:100%; height:100%; overflow:hidden; background:rgba(0,0,0,0.4); position:absolute; top:0; color:#666; }
+      .prompt .layerBg .content{ background:#fff; border-radius:8px; padding:10px 0 0 0; position:absolute; left:15%; width:70%; text-align:center;}
+      .prompt .layerBg .content p{ line-height:30px; font-size:12px; padding:0 4%;margin-bottom: 10px;}
+      .prompt .layerBg .content div{  width:100%; height:40px; line-height:40px; text-align:center; font-size:14px; color:#ca7; border-top:1px solid #eee}
+      .prompt .layerBg .content div span{ width:49%; text-align:center; display:inline-block}
+      .prompt .layerBg .content div span.only{ width:100%;}
+    </style>
+
+  </ion-content>
+</ion-view>

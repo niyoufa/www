@@ -1,0 +1,47 @@
+<ion-view view-title="我">
+  <ion-content style="background: #efeff4;width: 100vw;">
+
+
+    <dl style="width:100vw; padding:3vw 2vw; border-bottom: 1px solid #e0e0e0;background: #ffffff; height:26vw;">
+      <dt style="float:left; width:18%;"><img ng-src="{{headimgurl}}" style="width:100%; border-radius:50%;"></dt>
+      <dd style="display:inline-block;margin-left:2vw;margin-top:5.5vw;"><span ng-bind="nickname"></span>
+      </dd>
+    </dl>
+
+    <div style="background: #fff;width: 100vw;padding:0 22px;margin-top: 20px;border-top: 1px solid #d9d9d9;border-bottom: 1px solid #d9d9d9">
+
+      <ul style="position: relative">
+        <li ng-click="toAccountOrder()" style="height: 45px;line-height: 45px;position: relative;border-bottom: 1px solid #d9d9d9;">
+          我的订单
+          <i style="float: right;font-size: 20px;color:#c7c7cc;" class="icon ion-ios-arrow-right"></i>
+        </li>
+
+        <li ng-click="toBindTel()" style="height: 45px;line-height: 45px;border-bottom: 0.5px solid #d9d9d9;">
+          绑定手机号
+          <i style="float: right;font-size: 20px;color:#c7c7cc;" class="icon ion-ios-arrow-right"></i>
+        </li>
+
+        <li ng-click="toAdivce()" style="height: 45px;line-height: 45px;">
+          意见反馈
+          <i style="float: right;font-size: 20px;color:#c7c7cc;" class="icon ion-ios-arrow-right"></i>
+        </li>
+
+        <li  style="height: 20px;width: 100vw; background-color: #efeff4;margin-left: -22px;">
+
+        </li>
+
+        <li ng-click="toFuwu()" style="height: 45px;line-height: 45px;border-bottom: 0.5px solid #d9d9d9;">
+          服务协议
+          <i style="float: right;font-size: 20px;color:#c7c7cc;" class="icon ion-ios-arrow-right"></i>
+        </li>
+
+        <li ng-click="toGuanyu()" style="line-height: 45px;">
+          关于我们
+          <i style="float: right;font-size: 20px;color:#c7c7cc;" class="icon ion-ios-arrow-right"></i>
+        </li>
+
+      </ul>
+    </div>
+  </ion-content>
+</ion-view>
+

@@ -1,0 +1,47 @@
+<ion-view view-title="首页">
+    <!--<ion-slide-box style="width:100vw;height: auto ;margin-top:10px;" does-continue="true" auto-play="true" slide-interval="3000" on-slide-changed="haha">-->
+  <ion-content >
+    <ion-slide-box does-continue="true" auto-play="true" slide-interval="3000">
+      <ion-slide  ng-repeat="banner in banners" >
+        <div style="width: 100vw;height:100px" > <img ng-src="{{basePath}}{{banner.file_path}}" style="width: 100%;height: 100px " /></div>
+      </ion-slide>
+    </ion-slide-box>
+    <div style="text-align: center;padding: 10px;">
+      <span style="color: #3a85cd;font-size: 2em;">企业信息查询领航者</span>
+    </div>
+    <div>
+      <input ng-click="toSearch()" type="text" style="width: 70vw;height:40px;border: 1px solid;border-color: #cccccc;padding-left: 2px;float: left;margin-left: 7vw;" placeholder="请输入企业名称、注册号或者人名">
+      <div style="width: 50px;height: 40px;background-color: #3d9feb;float: left;padding-top: 5px;padding-left: 10px;padding-right: 10px;padding-bottom: 5px;">
+        <img ng-src="img/searauto14.png" style="width: 30px;height: 30px;">
+      </div>
+    </div>
+    <br>
+    <br>
+    <div>
+      <span style="margin-left: 7vw">热搜</span>
+      <img ng-src="img/broadcast.png" style="margin-top: 3px;">
+      <span ng-click="toHotSearch(hot.word)" ng-repeat="hot in hots">{{hot.word}}&nbsp&nbsp</span>
+      <span ng-click="changeHot()" style="float: right;margin-top: 5px;margin-right: 5px;">换一批</span>
+    </div>
+    <br>
+    <span ng-click="toHotCompanyMore()" style="float: right;border: 0px  #ffffff;">热门企业更多</span>
+    <div ng-click="toCompany(data)" style="float: left;padding: 0px 0px 0 3px;width: 100%;margin-top: 5px;background-color: #ffffff" ng-repeat="data in hotCompanys track by $index" ng-if="sourceData.length!=0">
+
+      <img src={{basepath+data.image}} style="width: 30%;float: left;padding: 7px 4px 7px 4px">
+
+      <div style="width: 57%;float: left;padding: 7px 7px 0 7px">
+        <div>{{data.enttype}}</div><br>
+        <div style="font-size: 13px">公司法人：{{data.frname}}</div>
+        <div style="font-size: 13px">注册资本：{{data.regcap|number:2}}</div>
+        <div style="font-size: 13px">成立时间：{{data.esdate}}</div>
+      </div>
+
+      <img src="img/company_diaoxiao.png" style="width: 13%;float: right;" ng-if="data.entstatus=='吊销'">
+      <img src="img/company_diaoxiao.png" style="width: 13%;float: right;" ng-if="data.entstatus=='注销'">
+      <img src="img/company_zaiying.png" style="width: 13%;float: right;" ng-if="data.entstatus=='在营（开业）'">
+      <img src="img/company_diaoxiao.png" style="width: 13%;float: right;" ng-if="data.entstatus=='其他'">
+
+    </div>
+
+  </ion-content>
+</ion-view>

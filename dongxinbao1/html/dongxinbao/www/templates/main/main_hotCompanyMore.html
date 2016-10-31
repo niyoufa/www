@@ -1,0 +1,29 @@
+<ion-view title="可能感兴趣">
+  <ion-content style="background: #EDEDEE;">
+    <div style="margin-top: 20px;width: 100%;height:40px;text-align: center" ng-if="sourceData.length==0">暂无数据</div>
+    <div class="itemdiv" style="float: left" ng-repeat="data in sourceData track by $index" ng-if="sourceData.length!=0" ng-click="toCompany(data)">
+
+      <img src={{basepath+data.image}} style="width: 30%;float: left;padding: 7px 4px 7px 4px">
+
+      <div style="width: 57%;float: left;padding: 7px 7px 0 7px">
+        <div>{{data.enttype}}</div><br>
+        <div style="font-size: 13px">公司法人：{{data.frname}}</div>
+        <div style="font-size: 13px">注册资本：{{data.regcap|number:2}}</div>
+        <div style="font-size: 13px">成立时间：{{data.esdate}}</div>
+      </div>
+
+      <img src="img/company_diaoxiao.png" style="width: 13%;float: right;" ng-if="data.entstatus=='吊销'">
+      <img src="img/company_diaoxiao.png" style="width: 13%;float: right;" ng-if="data.entstatus=='注销'">
+      <img src="img/company_zaiying.png" style="width: 13%;float: right;" ng-if="data.entstatus=='在营（开业）'">
+      <img src="img/company_diaoxiao.png" style="width: 13%;float: right;" ng-if="data.entstatus=='其他'">
+
+    </div>
+
+    <ion-infinite-scroll ng-if="hasmore==true" on-infinite="loadMore()" distance="5%"></ion-infinite-scroll>
+
+  </ion-content>
+  <style type="text/css">
+    .itemdiv{padding: 0px 0px 0 3px;width: 100%;margin-top: 5px;background-color: #ffffff}
+    .myspan{float: left;width:33.33%;text-align: center;font-size: 14px;color: #333347}
+  </style>
+</ion-view>
